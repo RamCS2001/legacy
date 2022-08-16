@@ -1,0 +1,82 @@
+<div class="container mt-40">
+    <a class="btn btn-primary" [routerLink]="['/admin']">
+        Go Back To Admin page
+    </a>
+    <button class="btn btn-primary" style="float: right;" (click)="exportToExcel()">
+        <i class="fa-solid fa-file-export"></i> Export to Excel
+    </button>
+    <div class="d-flex justify-content-start mt-20">
+        <h5>Number Of Participants/Teams: {{eventCount}}</h5>
+    </div>
+</div>
+
+<div class="container mt-20">
+    <div class="d-flex justify-content-center">
+        <h1>
+            {{eventName}}
+        </h1>
+    </div>
+    <div class="d-flex justify-content-center">
+        <p>
+           USE ctrl+F to Search Participants By Admission Number/ Roll Number 
+        </p>
+    </div>
+</div>
+<div class="container mt-20">
+    <div class="table-responsive" *ngIf="individualList">
+        <table class="table table-hover table-condensed table-striped" id="participantsTable">
+            <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Admission number</th>
+                  <th>Roll Number</th>
+                  <th>E-mail</th>
+                  <th>Year</th>
+                  <th>Dept</th>
+                  <th>Section</th>
+                </tr>
+              </thead>
+            <tbody>
+                <tr *ngFor="let i of data; let index = index">
+                    <td *ngFor="let c of headers">
+                        {{i[c]}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-responsive" *ngIf="GroupList">
+        <table class="table table-hover table-condensed table-striped" id="participantsTable">
+            <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Admission number</th>
+                  <th>Roll Number</th>
+                  <th>E-mail</th>
+                  <th>Year</th>
+                  <th>Dept</th>
+                  <th>Section</th>
+                </tr>
+              </thead>
+            <tbody>
+                <ng-container *ngFor="let i of data; let index = index">
+                    <tr>
+                        <h6>Team Name: {{teamNames[index]}}</h6>
+                    </tr>
+                    <tr *ngFor="let j of data[index]">
+                        <td *ngFor="let c of headers">
+                            {{j[c]}}
+                        </td>
+                    </tr>
+                </ng-container>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div *ngIf="error">
+    <h1>
+        ERROR!! Contact Admin
+    </h1>
+</div>

@@ -1,0 +1,76 @@
+<section class="section-padding mt-120">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 p-2">
+          <div class="section-title-header">
+            <h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">
+              Hey {{name}}!
+            </h1>
+            <!-- <% if (user.email == process.env.ADMIN_ID) { %>
+            <h1><a href="/admin">Go To Admin Page</a></h1>
+            <%} else { %> -->
+            <p class="wow fadeInDown mt-2" data-wow-delay="0.2s">
+              Congrats, You have registered for Fiesta 2022.
+            </p>
+            <div class="container">
+              <div class="row">
+                <div class="table-responsive">
+                  <table class="table mt-3">
+                    <!-- <thead>
+              <tr>
+                <th>S No.</th>
+                <th>Name</th>
+                <th>Class</th>
+                <th>Roll No.</th>
+                <th>Admission No.</th>
+                <th>Mail ID</th>
+                <th>Phone Number</th>
+              </tr>
+            </thead> -->
+                    <tbody>
+                      <tr>
+                        <td>Name</td>
+                        <td>{{name}}</td>
+                      </tr>
+                      <tr>
+                        <td>Class</td>
+                        <td>
+                          {{class}}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Roll Number</td>
+                        <td>{{rollno}}</td>
+                      </tr>
+                      <tr>
+                        <td>Admission Number</td>
+                        <td>{{adminno}} </td>
+                      </tr>
+                      <tr>
+                        <td>Mail ID</td>
+                        <td>{{mail}}</td>
+                      </tr>
+                      
+                      <tr>
+                        <td>Your Events</td>
+                        <td>{{yourEvents}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <a class="main-btn mb-3" [routerLink]="['/']">Go Home</a><br>
+            <a class="main-btn" (click)="logout()">Logout Here</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+</section>
+
+<app-footer></app-footer>

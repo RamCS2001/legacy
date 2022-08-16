@@ -1,0 +1,158 @@
+<div class="d-flex justify-content-center align-items-center" style="height: 650px; font-size: 30px" *ngIf="unauthorizedMsg">
+    {{notAdmin}}
+</div>  
+
+<div *ngIf="authorizedMsg">
+  <div class="container mt-40">
+    <button class="btn btn-primary" (click)="logout()">
+        Logout
+    </button>
+
+    <a [routerLink]="['/list/22']" class="btn btn-primary" style="float: right;">
+      All Participants
+    </a>
+
+  </div>
+  
+  <section class="section-padding mt-60">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="section-title-header text-center">
+              <h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">
+                Individual Events
+              </h1>
+              <!-- <p class="wow fadeInDown" data-wow-delay="0.2s">All Events</p> -->
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover table-condensed table-striped">
+              <thead>
+                <tr>
+                  <th class="d-flex justify-content-center">S.NO</th>
+                  <th>Event Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="d-flex justify-content-center">1</td>
+                  <td><a [routerLink]="['/list/0']">As You Like It</a></td>
+                </tr>
+                <tr>
+                  <td class="d-flex justify-content-center">2</td>
+                  <td><a [routerLink]="['/list/1']">Best Manager</a></td>
+                </tr>
+                <tr>
+                  <td class="d-flex justify-content-center">3</td>
+                  <td><a [routerLink]="['/list/2']">Solo Dance</a></td>
+                </tr>
+                <tr>
+                  <td class="d-flex justify-content-center">4</td>
+                  <td><a [routerLink]="['/list/3']">Solo Singing</a></td>
+                </tr>
+                <tr>
+                  <td class="d-flex justify-content-center">5</td>
+                  <td><a [routerLink]="['/list/4']">Solo Instrumental</a></td>
+                </tr>
+                <tr>
+                  <td class="d-flex justify-content-center">6</td>
+                  <td><a [routerLink]="['/list/5']">Pixie</a></td>
+                </tr>
+                <tr>
+                  <td class="d-flex justify-content-center">7</td>
+                  <td><a [routerLink]="['/list/6']">Pencil Sketching</a></td>
+                </tr>
+                <tr>
+                  <td class="d-flex justify-content-center">8</td>
+                  <td><a [routerLink]="['/list/7']">Yoga</a></td>
+                </tr>
+                <tr>
+                  <td class="d-flex justify-content-center">9</td>
+                  <td><a [routerLink]="['/list/8']">Ezhuthaani</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section-padding mt-40">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="section-title-header text-center">
+              <h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">
+                Group Events
+              </h1>
+              <!-- <p class="wow fadeInDown" data-wow-delay="0.2s">All Events</p> -->
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover table-condensed table-striped">
+              <thead>
+                <tr>
+                  <th class="d-flex justify-content-center">S.NO</th>
+                  <th>Event Name</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="d-flex justify-content-center">1</td>
+                  <td><a [routerLink]="['/list/9']">Divide and Conquer</a></td>
+                </tr>
+                <tr>
+                  <td class="d-flex justify-content-center">2</td>
+                  <td><a [routerLink]="['/list/10']">Treasure Hunt</a></td>
+                </tr>
+                <tr>
+                  <td class="d-flex justify-content-center">3</td>
+                  <td><a [routerLink]="['/list/11']">Monsters’ Muss</a></td>
+                </tr>
+                <tr>
+                  <td class="d-flex justify-content-center">4</td>
+                  <td><a [routerLink]="['/list/12']">Radio Mirchi</a></td>
+                </tr>
+                <tr>
+                  <td class="d-flex justify-content-center">5</td>
+                  <td><a [routerLink]="['/list/13']">English Potpourri</a></td>
+                </tr>
+                <tr>
+                  <td class="d-flex justify-content-center">6</td>
+                  <td><a [routerLink]="['/list/14']">Lyrical Hunt</a></td>
+                </tr>
+                <tr>
+                  <td class="d-flex justify-content-center">7</td>
+                  <td><a [routerLink]="['/list/15']">Tamil Potpourri</a></td>
+                </tr>
+                <tr>
+                  <td class="d-flex justify-content-center">8</td>
+                  <td><a [routerLink]="['/list/16']">Cinematrix (Short Flim)</a></td>
+                </tr>
+                <tr>
+                  <td class="d-flex justify-content-center">9</td>
+                  <td><a [routerLink]="['/list/17']">Quizzards of Oz</a></td>
+                </tr>
+                <tr>
+                  <td class="d-flex justify-content-center">10</td>
+                  <td><a [routerLink]="['/list/18']">Group Dance</a></td>
+                </tr>
+                <tr>
+                  <td class="d-flex justify-content-center">11</td>
+                  <td><a [routerLink]="['/list/19']">Poster Making</a></td>
+                </tr>
+                <tr>
+                  <td class="d-flex justify-content-center">12</td>
+                  <td><a [routerLink]="['/list/20']">Rangoli</a></td>
+                </tr>
+                <tr>
+                  <td class="d-flex justify-content-center">13</td>
+                  <td><a [routerLink]="['/list/21']">Dramatix</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+</div>

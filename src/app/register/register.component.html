@@ -1,0 +1,127 @@
+<!-- <h1>
+    Registeration Closed for now!!
+</h1> -->
+
+
+<div class="container" >
+    <div class="row" #scroll>
+    <div class="col-lg-6">
+        <div
+        class="about-content mt-50 wow fadeInLeftBig"
+        data-wow-duration="1s"
+        data-wow-delay="0.5s"
+        >
+        <div class="section-title">
+            <div class="line"></div>
+            <h3 class="title mt-2">Register An Account
+            </h3>
+        </div>
+
+            <div class="alert alert-danger mt-3" *ngIf="alerts" role="alert">
+                {{error}}
+            </div>
+        
+            <form [formGroup]="addUser" (ngSubmit)="createAccount()"> 
+                <label class="mt-2" for="name">Name:</label>
+                <input id="name" class="form-control mt-1" formControlName="name" type="text" placeholder="Name"/>
+                <label for="mail" class="mt-3">Mail Id:</label>
+                <input id="mail" class="form-control mt-1" formControlName="email" type="text" placeholder="College Mail Id"/>
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <label for="adminno">Admission  Number:</label>
+                        <input id="adminno" class="form-control mt-1" formControlName="admission_number" type="text" placeholder="Admission Number"/>
+                    </div>
+                    <div class="col-6">
+                        <label for="rollno">Roll Number:</label>
+                        <input id="rollno" class="form-control mt-1" formControlName="roll_number" type="text" placeholder="Roll Number"/>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-6">
+                        <label for="password">Password:</label>
+                        <input id="password" class="form-control mt-1" formControlName="password" type="password" placeholder="Password"/>
+                    </div>
+                    <div class="col-6">
+                        <label for="confirmpassword">Confirm Password:</label>
+                        <input id="confirmpassword" class="form-control mt-1" formControlName="cpassword" type="password" placeholder="Re-enter the Password"/>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-4">
+                        <label for="year">Year:</label>
+                        <select class="form-control mt-1" formControlName="year" id="year">
+                            <option value="">Year</option>
+                            
+                            <option value="III">IIIrd year</option>
+                            <option value="IV">IVth year</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <label for="dept">Department:</label>
+                        <select class="form-control mt-1" formControlName="department" id="dept">
+                            <option value="">Dept</option>
+                            <option value="AI-DS">AI-DS</option>
+                            <option value="BIOTECH">BIOTECH</option>
+                            <option value="BME">BME</option>
+                            <option value="CIVIL">CIVIL</option>
+                            <option value="CSE">CSE</option>
+                            <option value="ECE">ECE</option>
+                            <option value="EEE">EEE</option>
+                            <option value="IT">IT</option>
+                            <option value="MECH">MECH</option>
+                            <option value="MBA">MBA</option>
+                            <option value="MCA">MCA</option>
+                            <option value="ME - STRUCTURAL">ME - STRUCTURAL</option>
+                            <option value="ME - PED">ME - PED</option>
+                            <option value="ME - VLSI">ME - VLSI</option>
+                            <option value="ME - COMM SYS">ME - COMM SYS</option>
+                            <option value="ME - CSE">ME - CSE</option>
+                            <option value="ME - ISE">ME - ISE</option>
+                            <option value="MTECH - BT">MTECH - BT</option>
+                            <option value="other">Other</option>
+                          </select>
+                    </div>
+                    <div class="col-4">
+                        <label for="section">Section:</label>
+                        <select class="form-control mt-1" formControlName="section" id="section">
+                            <option value="">Section</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                            <option value="-">No Section</option>
+                        </select>
+                    </div>
+                    <div class="row mb-7">
+                        <div class="col-4">
+                            <input type="submit" [disabled]="clicked" Style="margin-bottom: 0px;" class="main-btn" value="Register">
+                        </div>
+                        <div class="col-2 mt-5 d-flex justify-content-start" *ngIf="loading">
+                            <img src="/assets/loading-bar.png" width="40px" height="40x">
+                        </div>
+                        <div class="col-4">
+                            <a [routerLink]="['/']" Style="margin-left:20px; margin-bottom: 0;" class="main-btn">Go Home</a>
+                        </div>
+                    </div>
+                </div>
+            </form> 
+            <a [routerLink]="['/login']" class="mt-4">Already Have an Account?</a>
+
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div
+        class="about-image text-center mt-50 wow fadeInRightBig"
+        data-wow-duration="1s"
+        data-wow-delay="0.5s"
+        >
+        <img src="assets/images/about/about1.svg" alt="about" />
+        </div>
+    </div>
+    </div>
+</div>
+<div class="about-shape-1">
+    <img src="assets/images/about/about-shape-1.svg" alt="shape" />
+</div>
+
+<app-footer></app-footer>

@@ -1,0 +1,93 @@
+<div class="container" >
+    <div class="row" #scroll>
+    <div class="col-lg-6">
+        <div
+        class="about-content mt-50 wow fadeInLeftBig"
+        data-wow-duration="1s"
+        data-wow-delay="0.5s"
+        >
+        <div class="section-title">
+            <div class="line"></div>
+            <h3 class="title">
+            <span ></span>{{name}}
+            </h3>
+        </div>
+
+        <div class="alert alert-success mt-3" *ngIf="success" role="alert">
+            {{msg}}
+        </div>
+
+        <div class="alert alert-danger mt-3" *ngIf="alert" role="alert">
+            {{error}}
+        </div>
+
+        <form [formGroup]="participantForm" (ngSubmit)="participate()" *ngIf="afterForm">
+            <!-- <div *ngIf="TeamNameDisplay">
+                <label class="mt-3" for="teamname">Team Name</label>
+                <input id="teamname" class="form-control mt-2" formControlName="teamname" type="text" placeholder="Team Name"/>
+                <span>--------------------------------------------------------------------------------------</span>
+            </div> -->
+            
+            <div class="row">     
+                <!-- <div *ngFor="let t of participantsArray"> -->
+                        <div>
+                            <label class="" for="name">Name</label>
+                            <input id="name" class="form-control mt-2" formControlName="name" type="text" placeholder="Name"/>
+                        </div>
+                        
+                        <div class="row">
+                            
+                            <div class="col-6">
+                                <label for="adminno" class="mt-3">Adminsion Number:</label>
+                                <input id="adminno" class="form-control mt-2" formControlName="admission_number" type="text" placeholder="Adminssion Number"/>
+                            </div>
+                            <div class="col-6">
+                                <label for="rollno" class="mt-3">Roll Number:</label>
+                                <input id="rollno" class="form-control mt-2" formControlName="roll_number" type="text" placeholder="Roll Number"/>
+                            </div>
+                            <!-- <span>--------------------------------------------------------------------------------------</span> -->
+                        </div>
+                <!-- </div> -->
+            </div>
+            <!-- <button (click)="addParticipant()" *ngIf="addParticipantDisplay" style="border: none; background-color: white;font-size:medium; font-weight: 800; color: blue;margin-top: 20px;text-decoration: underline;">
+                +add participant
+            </button> -->
+            <div class="row">
+                <div class="col-4">
+                    <input type="submit" [disabled]="wait" class="main-btn" value="Participate"/>
+                </div>
+                <div class="col-2 mt-5 d-flex justify-content-start" *ngIf="loading">
+                    <img src="/assets/loading-bar.png" width="40px" height="40x">
+                </div>
+            </div>
+            
+        </form>
+            <div class="row">
+                <div class="col-4">
+                    <a [routerLink]="['/']" class="main-btn">Back</a>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div
+        class="about-image text-center mt-50 wow fadeInRightBig"
+        data-wow-duration="1s"
+        data-wow-delay="0.5s"
+        >
+        <div class="alert alert-warning" role="alert">
+            {{instructions}}
+        </div>
+        <div class="alert alert-warning" role="alert">
+            {{instructionsMax}}
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+<div class="about-shape-1">
+    <img src="assets/images/about/about-shape-1.svg" alt="shape" />
+</div>
+
+<app-footer></app-footer>

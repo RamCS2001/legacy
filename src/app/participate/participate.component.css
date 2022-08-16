@@ -1,0 +1,7 @@
+input[type=submit]:disabled,
+button:disabled {
+  background: linear-gradient(to right, #605b5a 0%, #7b7779 50%, #5e5c5c 100%) !important;
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #fff;
+}

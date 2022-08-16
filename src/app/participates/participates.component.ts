@@ -170,7 +170,7 @@ export class ParticipatesComponent implements OnInit {
     })
 
     this.Linstructions= "Participant 1 will Consider as the Team Leader";
-    this.L2instructions= "Team Leader should have an account in the Fiesta'22"
+    this.L2instructions= "Team Leader should have an account in the Legacy'22"
 
     this.name= this.data["name"];
     if(this.data["minNumberOfParticipates"]==this.data["maxNumberOfParticipates"]){

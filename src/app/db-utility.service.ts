@@ -11,13 +11,6 @@ export class DbUtilityService {
 
   public registerationSuccess= new BehaviorSubject<any>(""); 
 
-  createUserUrl= "https://fiestaserverside.herokuapp.com/createuser";
-  loginUserUrl= "https://fiestaserverside.herokuapp.com/loginuser";
-  getUserDetailsUrl= "https://fiestaserverside.herokuapp.com/getuserdetails"
-  participateUrl= "https://fiestaserverside.herokuapp.com/participate"
-  participatesUrl= "https://fiestaserverside.herokuapp.com/participates"
-
-
   localCreateUserUrl= "http://localhost:5000/createuser";
   localLoginUserUrl= "http://localhost:5000/loginuser";
   localGetUserDetailsUrl= "http://localhost:5000/getuserdetails"

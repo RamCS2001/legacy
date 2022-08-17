@@ -21,12 +21,12 @@ export class DbUtilityService {
 
   createUser(acc: any): Observable<any>{
     console.log(acc);
-    return this.http.post(this.createUserUrl, acc);
+    return this.http.post(this.localCreateUserUrl, acc);
   }
 
   loginUser(user: any): Observable<any>{
     console.log(user);
-    return this.http.post(this.loginUserUrl, user)
+    return this.http.post(this.localLoginUserUrl, user)
   }
 
   setSession(response: any){
@@ -65,15 +65,15 @@ export class DbUtilityService {
   }    
 
   getUserDetails(): Observable<any>{
-    return this.http.get(this.getUserDetailsUrl);
+    return this.http.get(this.localGetUserDetailsUrl);
   }
 
   participate(details: any): Observable<any>{
-    return this.http.post(this.participateUrl, details);
+    return this.http.post(this.localParticipateUrl, details);
   }
 
   participates(details: any): Observable<any>{
-    return this.http.post(this.participatesUrl, details);
+    return this.http.post(this.localParticipatesUrl, details);
   }
 
   isAdmin(): boolean{
@@ -91,23 +91,16 @@ export class DbUtilityService {
   localGroupList= "http://localhost:5000/Grouplist?event="
   localAllList= "http://localhost:5000/all"
 
-
-
-  Individuallist= "https://fiestaserverside.herokuapp.com/Individuallist?event="
-  GroupList= "https://fiestaserverside.herokuapp.com/Grouplist?event="
-  AllList= "https://fiestaserverside.herokuapp.com/all"
-
-
   getIndividualList(event: any): Observable<any>{
     // console.log(this.localGetList+event)
-    return this.http.get(this.Individuallist+ event);
+    return this.http.get(this.localIndividuallist+ event);
   }
   getGroupList(event: any): Observable<any>{
     // console.log(this.localGetList+event)
-    return this.http.get(this.GroupList+ event);
+    return this.http.get(this.localGroupList+ event);
   }
   getAllList(event: any): Observable<any>{
     // console.log(this.localGetList+event)
-    return this.http.get(this.AllList);
+    return this.http.get(this.localAllList);
   }
 }

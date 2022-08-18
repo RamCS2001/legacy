@@ -9,8 +9,8 @@ import * as XLSX from "xlsx";
 })
 export class ListComponent implements OnInit {
   @ViewChild("participantsTable") table: ElementRef | undefined;
-
-
+  searchCollege = false
+  searchGender = false
   constructor(private route: ActivatedRoute, private router: Router, private myDb: DbUtilityService) { }
 
   eventDetails={
@@ -224,6 +224,10 @@ export class ListComponent implements OnInit {
 
      XLSX.writeFile(wb, fileName);
   }
-
-
+  enableSearchByGender ( ) : void {
+    this.searchGender = true;
+  }
+  enableSearchByCollege ( ) : void {
+    this.searchCollege = true;
+  }
 }

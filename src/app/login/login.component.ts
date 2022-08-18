@@ -65,25 +65,25 @@ export class LoginComponent implements OnInit {
     this.loading= true;
     this.myDb.loginUser(this.loginForm.value).subscribe((response: any)=>{
       this.success=false;
-      if(response["message"]==0){
-        this.error="Invalid Password";
+      if(response["message"] == 0){
+        this.error="Server error contact admin through query below!";
         this.alert=true;
         this.wait=false;
         this.loading=false;
         return;
        }
-      else if(response["message"]==-2){
+      else if(response["message"]==2){
         // alert("Error in creating User");
         this.success= false;
-        this.error="Mail ID Not Registered";
+        this.error="Mail id not registered!";
         this.alert=true;
         this.wait=false;
         this.loading=false;
         return;
       }
-      else if(response["message"]==-1){
+      else if(response["message"] == 3){
         this.success= false;
-        this.error="Error in signing in contact the admin";
+        this.error="invalid password!";
         this.alert=true;
         this.wait=false;
         this.loading=false;

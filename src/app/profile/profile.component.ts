@@ -16,7 +16,12 @@ export class ProfileComponent implements OnInit {
   adminno: any;
   mail: any;
   yourEvents: any;
-  public paid= false;
+  public regPaid= false;
+  public SubmittedAccomadationReq= false;
+  public yesChecked= false;
+  public noChecked= false;
+  public accomadationPaid=false;
+
   constructor(private myDb: DbUtilityService, private router: Router) { }
 
   ngOnInit(): void {

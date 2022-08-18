@@ -48,18 +48,36 @@
                               <input readonly class="form-control" value="200" >
                             </div>
                             <div class="col-4">
-                              <button class="btn btn-primary" [disabled]="paid">pay</button>
+                              <button class="btn btn-primary" [disabled]="regPaid">pay</button>
                             </div>
                           </div>
                         </td>
                       </tr>
                       <tr>
                         <td>Do you Need Accomadation:</td>
-                        <td></td>
+                          <td>
+                            
+                            <input type="radio" style="margin-right: 5px;" id="yesAccomadation" value="yes" [checked]="yesChecked">
+                            <label for="yesAccomadation" style="margin-right: 10px;">Yes</label>
+                            <input type="radio" id="noAccomadation" value="no" style="margin-right: 5px;" [checked]="noChecked">
+                            <label for="noAccomadation" style="margin-right: 5px;">No</label>
+
+                            <button class="btn btn-primary" [disabled]="SubmittedAccomadationReq" style="margin-left: 5px; height: 40px;">Submit</button>
+                            
+                          </td>
                       </tr>
                       <tr>
                         <td>Pay Accomadation Fee:</td>
-                        <td></td>
+                        <td>
+                          <div class="row">
+                            <div class="col-4">
+                              <input readonly class="form-control" value="100" >
+                            </div>
+                            <div class="col-4">
+                              <button class="btn btn-primary" [disabled]="accomadationPaid">pay</button>
+                            </div>
+                          </div>
+                        </td>
                       </tr>
                     </tbody>
                   </table>

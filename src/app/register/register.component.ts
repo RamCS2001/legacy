@@ -74,7 +74,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate([redirectUrl], {queryParams: { registered: 'true' } });
       }
       else if(response["message"]==2){
-        this.error="Mail Id Already taken";
+        this.error="Mail Id Already tak";
         this.alerts=true;
         this.clicked=false;
         this.loading= false;

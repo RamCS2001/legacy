@@ -76,14 +76,21 @@ export class RegisterComponent implements OnInit {
         this.router.navigate([redirectUrl], {queryParams: { registered: 'true' } });
       }
       else if(response["message"]==2){
-        this.error="Mail Id Already taken";
+        this.error="Mail Id Already Registered";
         this.alerts=true;
         this.clicked=false;
         this.loading= false;
         return;
       }
       else if(response["message"]==3){
-        this.error="Phone number already taken";
+        this.error="Phone Number Already Registered";
+        this.alerts=true;
+        this.clicked=false;
+        this.loading= false;
+        return;
+      }
+      else if(response["message"]==4){
+        this.error=this.addUser.value.college + " participation limit has been reached";
         this.alerts=true;
         this.clicked=false;
         this.loading= false;

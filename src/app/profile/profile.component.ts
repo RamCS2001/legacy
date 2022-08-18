@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DbUtilityService } from '../db-utility.service';
 
@@ -16,10 +17,21 @@ export class ProfileComponent implements OnInit {
   adminno: any;
   mail: any;
   yourEvents: any;
+  public regPaid= false;
+  public SubmittedAccomadationReqButton= false;
+  public accomadationPaid=false;
+
+  public disableAccomadtionSelect= false;
+
+  public yesChecked= false;
+  public noChecked= true;
+  accomadationForm= new FormGroup({
+    accomadation: new FormControl('',[Validators.required])
+  })
+
   constructor(private myDb: DbUtilityService, private router: Router) { }
 
   ngOnInit(): void {
-
     if(localStorage.getItem("username")=="admin"){
       const redirectUrl = '/admin';
       this.router.navigate([redirectUrl]);
@@ -40,6 +52,12 @@ export class ProfileComponent implements OnInit {
       this.mail= this.userDetail.email
       this.yourEvents= this.userDetail.yourEvents
     })
+  }
+
+
+  submitAccomadationReq(){
+    console.log(this.accomadationForm.value)
+
   }
 
   logout() {

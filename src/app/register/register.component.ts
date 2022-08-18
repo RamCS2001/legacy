@@ -22,9 +22,8 @@ export class RegisterComponent implements OnInit {
   addUser = new FormGroup({
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.email]),
-    phone_number: new FormControl('', [Validators.required]),
+    phonenumber: new FormControl('', [Validators.required]),
     clg: new FormControl('', [Validators.required]),
-    otherClgName: new FormControl(''),
     password: new FormControl('', [Validators.required]),
     cpassword: new FormControl('', [Validators.required]),
     year: new FormControl('', [Validators.required]),
@@ -33,7 +32,7 @@ export class RegisterComponent implements OnInit {
   }); 
 
   ngOnInit(): void {
-    window.scroll(0,0);
+
     if(this.myDb.isLoggedIn()){
       const redirectUrl = '/';
       // Redirect the user
@@ -42,8 +41,7 @@ export class RegisterComponent implements OnInit {
   }
 
   user: any;
-  public otherClg = false;
-  otherClgDone: any=0;
+
   createAccount(){
     // console.log(this.addUser.value)
     if(!this.addUser.valid){
@@ -58,26 +56,12 @@ export class RegisterComponent implements OnInit {
         return;
       }
     }
-    let phNo= this.addUser.value.phone_number
-    if(phNo?.length!=10){
-      this.error="Enter a valid Phone Number";
-        this.alerts=true;
-        return;
-    }
-
-    if(this.addUser.value.clg=="other" && this.otherClgDone==0){
-      this.otherClgDone=1
-      this.otherClg = true;
-      this.error="Enter the College Name"
-      this.alerts= true;
-      return;
-    }
     this.clicked=true;
     this.loading= true;
 
     this.user= this.addUser.value;
 
-    console.log(this.user)
+    // console.log(this.user)
 
     this.myDb.createUser(this.user).subscribe((response: any)=>{
 
@@ -89,21 +73,21 @@ export class RegisterComponent implements OnInit {
         // Redirect the user
         this.router.navigate([redirectUrl], {queryParams: { registered: 'true' } });
       }
-      else if(response["message"]==0){
-        this.error="Mail Id Already Registered";
+      else if(response["message"]==2){
+        this.error="Mail Id Already tak";
         this.alerts=true;
         this.clicked=false;
         this.loading= false;
         return;
       }
-      else if(response["message"]==-2){
-        this.error="Phone Number Already Registered";
+      else if(response["message"]==3){
+        this.error="Phone number already taken";
         this.alerts=true;
         this.clicked=false;
         this.loading= false;
         return;
       }
-      else{
+      else if ( response [ "message" ] == 0 ){
         // alert("Error in creating User");
         this.error="Error in Creating an Account Contact Admin";
         this.alerts=true;

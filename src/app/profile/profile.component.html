@@ -1,11 +1,11 @@
-<section class="section-padding mt-90">
+<section class="section-padding mt-2">
     <div class="container">
       <div class="row">
         <div class="col-12 p-2">
           <div class="section-title-header">
-            <h1 class="section-title wow fadeInUp" data-wow-delay="0.2s">
+            <h2 class="section-title wow fadeInUp" data-wow-delay="0.2s">
               Hey {{name}}!
-            </h1>
+            </h2>
             <p class="wow fadeInDown mt-2" data-wow-delay="0.2s">
               Congrats, You have registered for Legacy 2022.
             </p>
@@ -56,14 +56,12 @@
                       <tr>
                         <td>Do you Need Accomadation:</td>
                           <td>
-                            
-                            <input type="radio" style="margin-right: 5px;" id="yesAccomadation" value="yes" [checked]="yesChecked">
-                            <label for="yesAccomadation" style="margin-right: 10px;">Yes</label>
-                            <input type="radio" id="noAccomadation" value="no" style="margin-right: 5px;" [checked]="noChecked">
-                            <label for="noAccomadation" style="margin-right: 5px;">No</label>
+                            <form [formGroup]="accomadationForm" (ngSubmit)="submitAccomadationReq()">
+                              <input type="radio" style="margin-right: 5px;" formControlName="accomadation" name="accomadation" value="yes" [checked]="yesChecked"/>Yes
+                              <input type="radio" style="margin-right: 5px; margin-left: 5px;" formControlName="accomadation" name="accomadation" value="no" [checked]="noChecked"/>No
 
-                            <button class="btn btn-primary" [disabled]="SubmittedAccomadationReq" style="margin-left: 5px; height: 40px;">Submit</button>
-                            
+                              <button class="btn btn-primary" [disabled]="SubmittedAccomadationReqButton" style="margin-left: 5px; height: 40px;">Submit</button>
+                            </form>  
                           </td>
                       </tr>
                       <tr>
@@ -74,7 +72,7 @@
                               <input readonly class="form-control" value="100" >
                             </div>
                             <div class="col-4">
-                              <button class="btn btn-primary" [disabled]="accomadationPaid">pay</button>
+                              <button class="btn btn-primary" [disabled]="this.accomadationForm.value.accomadation=='no'">pay</button>
                             </div>
                           </div>
                         </td>

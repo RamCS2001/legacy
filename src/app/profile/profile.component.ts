@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   adminno: any;
   mail: any;
   yourEvents: any;
+  public paid= false;
   constructor(private myDb: DbUtilityService, private router: Router) { }
 
   ngOnInit(): void {

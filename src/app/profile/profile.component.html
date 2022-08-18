@@ -42,7 +42,16 @@
                       </tr>
                       <tr>
                         <td>Pay Registeration Fee: </td>
-                        <td></td>
+                        <td>
+                          <div class="row">
+                            <div class="col-4">
+                              <input readonly class="form-control" value="200" >
+                            </div>
+                            <div class="col-4">
+                              <button class="btn btn-primary" [disabled]="paid">pay</button>
+                            </div>
+                          </div>
+                        </td>
                       </tr>
                       <tr>
                         <td>Do you Need Accomadation:</td>

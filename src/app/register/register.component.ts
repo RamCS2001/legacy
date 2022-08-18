@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
     email: new FormControl('', [Validators.email]),
     phone_number: new FormControl('', [Validators.required]),
     clg: new FormControl('', [Validators.required]),
+    otherClgName: new FormControl(''),
     password: new FormControl('', [Validators.required]),
     cpassword: new FormControl('', [Validators.required]),
     year: new FormControl('', [Validators.required]),
@@ -32,7 +33,7 @@ export class RegisterComponent implements OnInit {
   }); 
 
   ngOnInit(): void {
-
+    window.scroll(0,0);
     if(this.myDb.isLoggedIn()){
       const redirectUrl = '/';
       // Redirect the user
@@ -42,7 +43,7 @@ export class RegisterComponent implements OnInit {
 
   user: any;
   public otherClg = false;
-
+  otherClgDone: any=0;
   createAccount(){
     // console.log(this.addUser.value)
     if(!this.addUser.valid){
@@ -64,7 +65,8 @@ export class RegisterComponent implements OnInit {
         return;
     }
 
-    if(this.addUser.value.clg=="other"){
+    if(this.addUser.value.clg=="other" && this.otherClgDone==0){
+      this.otherClgDone=1
       this.otherClg = true;
       this.error="Enter the College Name"
       this.alerts= true;
@@ -75,7 +77,7 @@ export class RegisterComponent implements OnInit {
 
     this.user= this.addUser.value;
 
-    // console.log(this.user)
+    console.log(this.user)
 
     this.myDb.createUser(this.user).subscribe((response: any)=>{
 

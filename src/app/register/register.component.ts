@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
 
   addUser = new FormGroup({
     name: new FormControl('', [Validators.required]),
+    gender: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.email]),
     phone_number: new FormControl('', [Validators.required]),
     college: new FormControl('', [Validators.required]),
@@ -62,7 +63,7 @@ export class RegisterComponent implements OnInit {
 
     this.user= this.addUser.value;
 
-    // console.log(this.user)
+    console.log(this.user)
 
     this.myDb.createUser(this.user).subscribe((response: any)=>{
 

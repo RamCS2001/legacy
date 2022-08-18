@@ -57,8 +57,8 @@
                         <td>Do you Need Accomadation:</td>
                           <td>
                             <form [formGroup]="accomadationForm" (ngSubmit)="submitAccomadationReq()">
-                              <input type="radio" style="margin-right: 5px;" formControlName="accomadation" name="accomadation" value="yes" [checked]="yesChecked"/>Yes
-                              <input type="radio" style="margin-right: 5px; margin-left: 5px;" formControlName="accomadation" name="accomadation" value="no" [checked]="noChecked"/>No
+                              <input type="radio" style="margin-right: 5px;" name="accomadation" value="yes" id="yesRadio" [checked]="yesChecked"/>Yes
+                              <input type="radio" style="margin-right: 5px; margin-left: 5px;" name="accomadation" value="no" id="noRadio" [checked]="noChecked"/>No
 
                               <button class="btn btn-primary" [disabled]="SubmittedAccomadationReqButton" style="margin-left: 5px; height: 40px;">Submit</button>
                             </form>  
@@ -72,7 +72,7 @@
                               <input readonly class="form-control" value="100" >
                             </div>
                             <div class="col-4">
-                              <button class="btn btn-primary" [disabled]="this.accomadationForm.value.accomadation=='no'">pay</button>
+                              <button class="btn btn-primary" [disabled]="">pay</button>
                             </div>
                           </div>
                         </td>

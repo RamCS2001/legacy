@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   addUser = new FormGroup({
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.email]),
-    phonenumber: new FormControl('', [Validators.required]),
+    phone_number: new FormControl('', [Validators.required]),
     clg: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
     cpassword: new FormControl('', [Validators.required]),
@@ -41,6 +41,7 @@ export class RegisterComponent implements OnInit {
   }
 
   user: any;
+  public otherClg = false;
 
   createAccount(){
     // console.log(this.addUser.value)
@@ -55,6 +56,19 @@ export class RegisterComponent implements OnInit {
         this.alerts=true;
         return;
       }
+    }
+    let phNo= this.addUser.value.phone_number
+    if(phNo?.length!=10){
+      this.error="Enter a valid Phone Number";
+        this.alerts=true;
+        return;
+    }
+
+    if(this.addUser.value.clg=="other"){
+      this.otherClg = true;
+      this.error="Enter the College Name"
+      this.alerts= true;
+      return;
     }
     this.clicked=true;
     this.loading= true;
@@ -81,14 +95,7 @@ export class RegisterComponent implements OnInit {
         return;
       }
       else if(response["message"]==-2){
-        this.error="Admission Number Already Registered";
-        this.alerts=true;
-        this.clicked=false;
-        this.loading= false;
-        return;
-      }
-      else if(response["message"]==-3){
-        this.error="Roll Number Already Registered";
+        this.error="Phone Number Already Registered";
         this.alerts=true;
         this.clicked=false;
         this.loading= false;

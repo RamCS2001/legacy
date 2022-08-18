@@ -23,13 +23,13 @@ export class RegisterComponent implements OnInit {
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.email]),
     phone_number: new FormControl('', [Validators.required]),
-    clg: new FormControl('', [Validators.required]),
-    otherClgName: new FormControl(''), 
+    college: new FormControl('', [Validators.required]),
+    otherCollege: new FormControl(''), 
     password: new FormControl('', [Validators.required]),
     cpassword: new FormControl('', [Validators.required]),
     year: new FormControl('', [Validators.required]),
     degree: new FormControl('', [Validators.required]),
-    dept: new FormControl('', [Validators.required])
+    department: new FormControl('', [Validators.required])
   }); 
 
   ngOnInit(): void {
@@ -75,7 +75,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate([redirectUrl], {queryParams: { registered: 'true' } });
       }
       else if(response["message"]==2){
-        this.error="Mail Id Already tak";
+        this.error="Mail Id Already taken";
         this.alerts=true;
         this.clicked=false;
         this.loading= false;
@@ -90,7 +90,7 @@ export class RegisterComponent implements OnInit {
       }
       else if ( response [ "message" ] == 0 ){
         // alert("Error in creating User");
-        this.error="Error in Creating an Account Contact Admin";
+        this.error="Error in Creating an Account Contact Admin through query box below!";
         this.alerts=true;
         this.clicked=false;
         this.loading= false;

@@ -11,6 +11,7 @@ export class ListComponent implements OnInit {
   @ViewChild("participantsTable") table: ElementRef | undefined;
   searchCollege = false
   searchGender = false
+  check = ""
   constructor(private route: ActivatedRoute, private router: Router, private myDb: DbUtilityService) { }
 
   eventDetails={
@@ -229,5 +230,9 @@ export class ListComponent implements OnInit {
   }
   enableSearchByCollege ( ) : void {
     this.searchCollege = true;
+  }
+  disableFilter (  ) {
+     this.searchGender = false
+     this.searchCollege = false
   }
 }

@@ -12,7 +12,7 @@ import { EventComponent } from './event/event.component';
 import { HeaderContentComponent } from './header-content/header-content.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DbUtilityService } from './db-utility.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorInterceptor } from './token-interceptor.interceptor';
@@ -47,7 +47,8 @@ import { ExcelService } from './excel.service';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [DbUtilityService, {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorInterceptor, multi: true}, ExcelService],
   bootstrap: [AppComponent]

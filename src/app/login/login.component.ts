@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   public loading= false;
 
   constructor(private myDb:DbUtilityService,private router: Router, private route: ActivatedRoute ) { 
+    
   }
 
   ngOnInit(): void {

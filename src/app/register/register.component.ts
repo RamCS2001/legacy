@@ -73,28 +73,21 @@ export class RegisterComponent implements OnInit {
         // Redirect the user
         this.router.navigate([redirectUrl], {queryParams: { registered: 'true' } });
       }
-      else if(response["message"]==0){
-        this.error="Mail Id Already Registered";
+      else if(response["message"]==2){
+        this.error="Mail Id Already taken";
         this.alerts=true;
         this.clicked=false;
         this.loading= false;
         return;
       }
-      else if(response["message"]==-2){
-        this.error="Admission Number Already Registered";
+      else if(response["message"]==3){
+        this.error="Phone number already taken";
         this.alerts=true;
         this.clicked=false;
         this.loading= false;
         return;
       }
-      else if(response["message"]==-3){
-        this.error="Roll Number Already Registered";
-        this.alerts=true;
-        this.clicked=false;
-        this.loading= false;
-        return;
-      }
-      else{
+      else if ( response [ "message" ] == 0 ){
         // alert("Error in creating User");
         this.error="Error in Creating an Account Contact Admin";
         this.alerts=true;

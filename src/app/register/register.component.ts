@@ -22,8 +22,9 @@ export class RegisterComponent implements OnInit {
   addUser = new FormGroup({
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.email]),
-    phonenumber: new FormControl('', [Validators.required]),
+    phone_number: new FormControl('', [Validators.required]),
     clg: new FormControl('', [Validators.required]),
+    otherClgName: new FormControl(''), 
     password: new FormControl('', [Validators.required]),
     cpassword: new FormControl('', [Validators.required]),
     year: new FormControl('', [Validators.required]),
@@ -41,7 +42,6 @@ export class RegisterComponent implements OnInit {
   }
 
   user: any;
-
   createAccount(){
     // console.log(this.addUser.value)
     if(!this.addUser.valid){
@@ -56,6 +56,7 @@ export class RegisterComponent implements OnInit {
         return;
       }
     }
+
     this.clicked=true;
     this.loading= true;
 

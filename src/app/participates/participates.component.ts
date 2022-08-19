@@ -48,7 +48,8 @@ export class ParticipatesComponent implements OnInit {
       id: "9",
       name: "Divide and Conquer",
       minNumberOfParticipates: 5,
-      maxNumberOfParticipates: 5
+      maxNumberOfParticipates: 5,
+      serverName: "divideandconquer"
     },{
       id: "10",
       name: "Treasure hunt",
@@ -150,23 +151,39 @@ export class ParticipatesComponent implements OnInit {
     this.id= this.route.snapshot.params["id"];
     this.data= this.eventDetails.eventsList[this.id];
 
-    if(this.id==10){
+    if(this.id<9){
       const redirectUrl = '/event/'+ this.id;
       // Redirect the user
       this.router.navigate([redirectUrl]);
       return;
     }
 
-    this.myDb.getUserDetails().subscribe((response: any)=>{
-      this.userDetail= response["userDetails"]
-      this.yourEvents= this.userDetail.yourEvents
+    // if(this.id==10){
+    //   const redirectUrl = '/event/'+ this.id;
+    //   // Redirect the user
+    //   this.router.navigate([redirectUrl]);
+    //   return;
+    // }
 
-      if(this.yourEvents.includes(this.name)){
-        this.msg= "You have Already Registered for this event"
-        this.alert=false;
-        this.success=true;
-        this.afterForm= false;
-      }
+    this.myDb.checkCollegeParticipation(this.eventDetails.eventsList[this.id].serverName)
+      .subscribe((response: any)=>{
+        if(response["message"]==-1){
+          const redirectUrl = '/login';
+          // Redirect the user
+          this.router.navigate([redirectUrl], {queryParams: { expired: 'true' } });
+        }
+        else if(response["message"]==0){
+          const redirectUrl = '/login';
+          // Redirect the user
+          this.router.navigate([redirectUrl], {queryParams: { expired: 'true' } });
+        }
+        else if(response["message"]==1){
+          this.msg= "Your College permit for this Event is Full Try other events... Thank You!!! "
+          this.alert=false;
+          this.success=true;
+          this.afterForm= false;
+        }
+        
     })
 
     this.Linstructions= "Participant 1 will Consider as the Team Leader";

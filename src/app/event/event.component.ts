@@ -491,11 +491,11 @@ export class EventComponent implements OnInit {
     this.rules= this.data["rules"];
 
 
-    if(this.id==10){
-      this.closedEvent= true
-      this.closedEventInS=true
-      this.closedEventInSText="Event Closed!!! Participate in other events... ThankYou..."
-    }
+    // if(this.id==10){
+    //   this.closedEvent= true
+    //   this.closedEventInS=true
+    //   this.closedEventInSText="Event Closed!!! Participate in other events... ThankYou..."
+    // }
   }
 
   participate(){

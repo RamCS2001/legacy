@@ -56,7 +56,9 @@ export class ProfileComponent implements OnInit {
 
 
   submitAccomadationReq(){
-    console.log(this.accomadationForm.value)
+    // console.log(document.getElementById("yesRadio"))
+
+
 
   }
 

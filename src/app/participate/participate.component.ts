@@ -22,11 +22,11 @@ export class ParticipateComponent implements OnInit {
     "eventsList": [{
       id: "0",
       name: "As You Like It",
-      
+      serverName: "asyoulikeit"
     },{
       id: "1",
       name: "Best Manager",
-     
+      serverName: "bestmanager"
     },{
       id: "2",
       name: "Solo Dance",
@@ -147,24 +147,52 @@ export class ParticipateComponent implements OnInit {
     this.data= this.eventDetails.eventsList[this.id];
     this.name= this.data["name"];
 
-    this.myDb.getUserDetails().subscribe((response: any)=>{
-      this.userDetail= response["userDetails"]
-      this.yourEvents= this.userDetail.yourEvents
+    // this.myDb.getUserDetails().subscribe((response: any)=>{
+    //   this.userDetail= response["userDetails"]
+    //   this.yourEvents= this.userDetail.yourEvents
 
-      if(this.yourEvents.includes(this.name)){
-        this.msg= "You have Already Registered for this event"
-        this.alert=false;
-        this.success=true;
-        this.afterForm= false;
-      }
-    })
+    //   if(this.yourEvents.includes(this.name)){
+    //     this.msg= "You have Already Registered for this event"
+    //     this.alert=false;
+    //     this.success=true;
+    //     this.afterForm= false;
+    //   }
+    // })
 
-    if(this.yourEvents.includes(this.name)){
-      this.msg= "You have Already Registered for this event"
-      this.alert=false;
-      this.success=true;
-      this.afterForm= false;
+    // if(this.yourEvents.includes(this.name)){
+    //   this.msg= "You have Already Registered for this event"
+    //   this.alert=false;
+    //   this.success=true;
+    //   this.afterForm= false;
+    // }
+
+    if(this.id>8){
+      const redirectUrl = '/event/'+ this.id;
+      // Redirect the user
+      this.router.navigate([redirectUrl]);
+      return;
     }
+
+    this.myDb.checkCollegeParticipation(this.eventDetails.eventsList[this.id].serverName)
+      .subscribe((response: any)=>{
+        if(response["message"]==-1){
+          const redirectUrl = '/login';
+          // Redirect the user
+          this.router.navigate([redirectUrl], {queryParams: { expired: 'true' } });
+        }
+        else if(response["message"]==0){
+          const redirectUrl = '/login';
+          // Redirect the user
+          this.router.navigate([redirectUrl], {queryParams: { expired: 'true' } });
+        }
+        else if(response["message"]==1){
+          this.msg= "Your College permit for this Event is Full Try other events... Thank You!!! "
+          this.alert=false;
+          this.success=true;
+          this.afterForm= false;
+        }
+        
+    })
     if(this.id<9){
       this.participantsArray=[1]
       this.TeamNameDisplay= false

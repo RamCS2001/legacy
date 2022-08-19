@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
 
   addUser = new FormGroup({
     name: new FormControl('', [Validators.required]),
+    gender: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.email]),
     phone_number: new FormControl('', [Validators.required]),
     college: new FormControl('', [Validators.required]),
@@ -62,7 +63,7 @@ export class RegisterComponent implements OnInit {
 
     this.user= this.addUser.value;
 
-    // console.log(this.user)
+    console.log(this.user)
 
     this.myDb.createUser(this.user).subscribe((response: any)=>{
 
@@ -75,14 +76,21 @@ export class RegisterComponent implements OnInit {
         this.router.navigate([redirectUrl], {queryParams: { registered: 'true' } });
       }
       else if(response["message"]==2){
-        this.error="Mail Id Already taken";
+        this.error="Mail Id Already Registered";
         this.alerts=true;
         this.clicked=false;
         this.loading= false;
         return;
       }
       else if(response["message"]==3){
-        this.error="Phone number already taken";
+        this.error="Phone Number Already Registered";
+        this.alerts=true;
+        this.clicked=false;
+        this.loading= false;
+        return;
+      }
+      else if(response["message"]==4){
+        this.error=this.addUser.value.college + " participation limit has been reached";
         this.alerts=true;
         this.clicked=false;
         this.loading= false;

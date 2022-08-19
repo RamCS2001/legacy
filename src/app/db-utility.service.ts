@@ -103,4 +103,10 @@ export class DbUtilityService {
     // console.log(this.localGetList+event)
     return this.http.get(this.localAllList);
   }
+
+  locacheckCollegeParticipationUrl= "http://localhost:5000/checkCollegeParticipation?event="
+
+  checkCollegeParticipation(event: any): Observable<any>{
+    return this.http.get(this.locacheckCollegeParticipationUrl+ event);
+  }
 }

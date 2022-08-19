@@ -134,7 +134,7 @@ export class AdminComponent implements OnInit {
   logout(){
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
-    localStorage.removeItem("name");
+    localStorage.removeItem("username");
     const redirectUrl = '/login';
     // Redirect the user
     this.router.navigate([redirectUrl], {queryParams: { logout: 'true' }});

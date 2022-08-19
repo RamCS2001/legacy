@@ -7,23 +7,23 @@
     </button>
     <div style="float: right; margin-right:50px;"  class="btn-group">
         <button type="button" class="btn btn-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-          Action
+          Apply filter
         </button>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu" ngModel="check">
           <li><button (click)="enableSearchByGender()" class="dropdown-item" >Filter by gender</button></li>
           <li><button (click)="enableSearchByCollege()" class="dropdown-item" >Filter by college</button></li>
         </ul>
       </div>
     </div>
-    <div *ngIf="searchCollege" style="float: right; margin-right: 65px; margin-top: 10px" class="dropdown">
+    <div *ngIf="searchCollege" style="float: right; margin-right: 54px; margin-top: 10px" class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          Dropdown button
+          select college name
         </button>
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="#">Mepco</a></li>
-          <li><a class="dropdown-item" href="#">Kamaraj</a></li>
-          <li><a class="dropdown-item" href="#">Kln</a></li>
-        </ul>
+        <select class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <option><a class="dropdown-item" href="#">Mepco</a><option>
+          <option><a class="dropdown-item" href="#">Kamaraj</a></option>
+          <option><a class="dropdown-item" href="#">Kln</a></option>
+        </select>
       </div>
     <div *ngIf="searchGender" style="float: right; margin-right: 50px; margin-top: 10px">
         <div  class="form-check">
@@ -45,6 +45,9 @@
             </label>
         </div>
     </div>
+    <button (click)="disableFilter()" *ngIf="searchGender || searchCollege" class="btn btn-danger" style="float: right; margin-top: 10px; margin-right: 10px" >
+       <i class="fa-solid fa-xmark"></i>
+    </button>
     <div style="margin-left:20px" class="d-flex justify-content-start mt-20">
         <h5>Number Of Participants/Teams: {{eventCount}}</h5>
     </div>

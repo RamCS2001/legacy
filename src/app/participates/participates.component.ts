@@ -15,102 +15,134 @@ export class ParticipatesComponent implements OnInit {
     "eventsList": [{
       id: "0",
       name: "As You Like It",
+      serverName: "asyoulikeit",
+      maxParticipantsPerCollege: 1
     },{
       id: "1",
       name: "Best Manager",
+      serverName: "bestmanager",
+      maxParticipantsPerCollege: 1
     },{
-      id: "2",
+      id: "1",
       name: "Solo Dance",
-     
+      maxParticipantsPerCollege: 1
     },{
       id: "3",
       name: "Solo Singing",
+      maxParticipantsPerCollege: 1
     },{
       id: "4",
       name: "Solo Instrumental",
+      maxParticipantsPerCollege: 1
     },{
       id: "5",
       name: "Pixie",
+      maxParticipantsPerCollege: 1
      
     },{
       id: "6",
       name: "Pencil Sketching",
+      maxParticipantsPerCollege: 1
      
     },{
       id: "7",
       name: "Yoga",
-     
+      maxParticipantsPerCollege: 1
+
     },{
       id: "8",
       name: "Ezhuthaani",
-      
+      maxParticipantsPerCollege: 1
     },{
       id: "9",
       name: "Divide and Conquer",
       minNumberOfParticipates: 5,
       maxNumberOfParticipates: 5,
-      serverName: "divideandconquer"
+      serverName: "divideandconquer",
+      maxParticipantsPerCollege: 2
     },{
       id: "10",
       name: "Treasure hunt",
       minNumberOfParticipates: 5,
-      maxNumberOfParticipates: 5
+      maxNumberOfParticipates: 5,
+      maxParticipantsPerCollege: 2
       
     },{
       id: "11",
       name: "Monsters’ Muss",
       minNumberOfParticipates: 2,
-      maxNumberOfParticipates: 2
+      maxNumberOfParticipates: 2,
+      maxParticipantsPerCollege: 2
+
     },{
       id: "12",
       name: "Radio Mirchi",
       minNumberOfParticipates: 1,
-      maxNumberOfParticipates: 3
+      maxNumberOfParticipates: 3,
+      maxParticipantsPerCollege: 2
     },{
       id: "13",
       name: "English Potpourri",
       minNumberOfParticipates: 3,
-      maxNumberOfParticipates: 3
+      maxNumberOfParticipates: 3,
+      maxParticipantsPerCollege: 2
+
     },{
       id: "14",
       name: "Lyrical Hunt",
       minNumberOfParticipates: 3,
-      maxNumberOfParticipates: 3
+      maxNumberOfParticipates: 3,
+      maxParticipantsPerCollege: 2
+
     },{
       id: "15",
       name: "Tamil Potpourri",
       minNumberOfParticipates: 3,
-      maxNumberOfParticipates: 3
+      maxNumberOfParticipates: 3,
+      maxParticipantsPerCollege: 2
+
     },{
       id: "16",
       name: "Cinematrix (Short Flim)",
       minNumberOfParticipates: 5,
-      maxNumberOfParticipates: 8
+      maxNumberOfParticipates: 8,
+      maxParticipantsPerCollege: 2
+
     },{
       id: "17",
       name: "Quizzards of Oz",
       minNumberOfParticipates: 2,
-      maxNumberOfParticipates: 2
+      maxNumberOfParticipates: 2,
+      maxParticipantsPerCollege: 2
+
     },{
       id: "18",
       name: "Group Dance",   
       minNumberOfParticipates: 4,
-      maxNumberOfParticipates: 15
+      maxNumberOfParticipates: 15,
+      maxParticipantsPerCollege: 2
+
     },{
       id: "19",
       name: "Poster Making",
       minNumberOfParticipates: 2,
-      maxNumberOfParticipates: 2
+      maxNumberOfParticipates: 2,
+      maxParticipantsPerCollege: 2
+
     },{
       id: "20",
       name: "Rangoli",
       minNumberOfParticipates: 2,
-      maxNumberOfParticipates: 3
+      maxNumberOfParticipates: 3,
+      maxParticipantsPerCollege: 2
+
     },{
       id: "21",
       name: "Dramatix",
       minNumberOfParticipates: 4,
-      maxNumberOfParticipates: 10
+      maxNumberOfParticipates: 10,
+      maxParticipantsPerCollege: 2
+
     }]
   };
 
@@ -178,10 +210,13 @@ export class ParticipatesComponent implements OnInit {
           this.router.navigate([redirectUrl], {queryParams: { expired: 'true' } });
         }
         else if(response["message"]==1){
-          this.msg= "Your College permit for this Event is Full Try other events... Thank You!!! "
-          this.alert=false;
-          this.success=true;
-          this.afterForm= false;
+
+          if(this.eventDetails.eventsList[this.id].maxParticipantsPerCollege<=response["currentCount"]){
+            this.msg= "Your College permit for this Event is Full Try other events... Thank You!!! "
+            this.alert=false;
+            this.success=true;
+            this.afterForm= false;
+          }
         }
         
     })

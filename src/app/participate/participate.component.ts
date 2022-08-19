@@ -22,101 +22,44 @@ export class ParticipateComponent implements OnInit {
     "eventsList": [{
       id: "0",
       name: "As You Like It",
-      serverName: "asyoulikeit"
+      serverName: "asyoulikeit",
+      maxParticipantsPerCollege: 1
     },{
       id: "1",
       name: "Best Manager",
-      serverName: "bestmanager"
+      serverName: "bestmanager",
+      maxParticipantsPerCollege: 1
     },{
-      id: "2",
+      id: "1",
       name: "Solo Dance",
-     
+      maxParticipantsPerCollege: 1
     },{
       id: "3",
       name: "Solo Singing",
+      maxParticipantsPerCollege: 1
     },{
       id: "4",
       name: "Solo Instrumental",
+      maxParticipantsPerCollege: 1
     },{
       id: "5",
       name: "Pixie",
+      maxParticipantsPerCollege: 1
      
     },{
       id: "6",
       name: "Pencil Sketching",
+      maxParticipantsPerCollege: 1
      
     },{
       id: "7",
       name: "Yoga",
-     
+      maxParticipantsPerCollege: 1
+
     },{
       id: "8",
       name: "Ezhuthaani",
-      
-    },{
-      id: "9",
-      name: "Divide And Conquer",
-      minNumberOfParticipates: 5,
-      maxNumberOfParticipates: 5
-    },{
-      id: "10",
-      name: "Treasure hunt",
-      minNumberOfParticipates: 6,
-      maxNumberOfParticipates: 6
-      
-    },{
-      id: "10",
-      name: "Monsters’ Muss",
-      minNumberOfParticipates: 2,
-      maxNumberOfParticipates: 2
-    },{
-      id: "11",
-      name: "Radio Mirchi",
-      minNumberOfParticipates: 1,
-      maxNumberOfParticipates: 3
-    },{
-      id: "12",
-      name: "English Potpourri",
-      minNumberOfParticipates: 3,
-      maxNumberOfParticipates: 3
-    },{
-      id: "13",
-      name: "Lyrical Hunt",
-      minNumberOfParticipates: 3,
-      maxNumberOfParticipates: 3
-    },{
-      id: "14",
-      name: "Tamil Potpourri",
-      minNumberOfParticipates: 3,
-      maxNumberOfParticipates: 3
-    },{
-      id: "15",
-      name: "Cinematrix (Short Flim)",
-      minNumberOfParticipates: 5,
-      maxNumberOfParticipates: 8
-    },{
-      id: "16",
-      name: "Quizzards of Oz",
-      minNumberOfParticipates: 2,
-      maxNumberOfParticipates: 2
-    },{
-      id: "17",
-      name: "Group Dance",   
-      minNumberOfParticipates: 4,
-      maxNumberOfParticipates: 15
-    },{
-      id: "18",
-      name: "Poster Making",
-      minNumberOfParticipates: 2,
-      maxNumberOfParticipates: 2
-    },{
-      id: "19",
-      name: "Dramarix"
-    },{
-      id: "20",
-      name: "Rangoli",
-      minNumberOfParticipates: 3,
-      maxNumberOfParticipates: 3
+      maxParticipantsPerCollege: 1
     }]
   };
   constructor(private route: ActivatedRoute, private router: Router, private myDb: DbUtilityService) { }
@@ -186,10 +129,13 @@ export class ParticipateComponent implements OnInit {
           this.router.navigate([redirectUrl], {queryParams: { expired: 'true' } });
         }
         else if(response["message"]==1){
-          this.msg= "Your College permit for this Event is Full Try other events... Thank You!!! "
-          this.alert=false;
-          this.success=true;
-          this.afterForm= false;
+          
+          if(this.eventDetails.eventsList[this.id].maxParticipantsPerCollege<=response["currentCount"]){
+            this.msg= "Your College permit for this Event is Full Try other events... Thank You!!! "
+            this.alert=false;
+            this.success=true;
+            this.afterForm= false;
+          }
         }
         
     })

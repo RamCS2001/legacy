@@ -13,9 +13,10 @@ export class ParticipateComponent implements OnInit {
 
   participantForm= new FormGroup({
     name: new FormControl('', [Validators.required]),
-    admission_number: new FormControl('', [Validators.required]),
-    roll_number: new FormControl('', [Validators.required]),
-    event: new FormControl('')
+    email: new FormControl('', [Validators.email]),
+    phone_number: new FormControl('', [Validators.required]),
+    event: new FormControl(''),
+    serverName: new FormControl('')
   })
 
   eventDetails={
@@ -28,38 +29,43 @@ export class ParticipateComponent implements OnInit {
       id: "1",
       name: "Best Manager",
       serverName: "bestmanager",
-      maxParticipantsPerCollege: 1
+      maxParticipantsPerCollege: 2
     },{
       id: "1",
       name: "Solo Dance",
+      serverName: "solodance",
       maxParticipantsPerCollege: 1
     },{
       id: "3",
       name: "Solo Singing",
-      maxParticipantsPerCollege: 1
+      maxParticipantsPerCollege: 1,
+      serverName: "solosinging"
     },{
       id: "4",
       name: "Solo Instrumental",
-      maxParticipantsPerCollege: 1
+      maxParticipantsPerCollege: 1,
+      serverName: "soloinstrumental"
     },{
       id: "5",
       name: "Pixie",
-      maxParticipantsPerCollege: 1
-     
+      maxParticipantsPerCollege: 1,
+      serverName: "pixie"
     },{
       id: "6",
       name: "Pencil Sketching",
-      maxParticipantsPerCollege: 1
+      maxParticipantsPerCollege: 1,
+      serverName: "pencilsketching"
      
     },{
       id: "7",
       name: "Yoga",
-      maxParticipantsPerCollege: 1
-
+      maxParticipantsPerCollege: 1,
+      serverName: "yoga"
     },{
       id: "8",
       name: "Ezhuthaani",
-      maxParticipantsPerCollege: 1
+      maxParticipantsPerCollege: 1,
+      serverName: "ezhuthaani"
     }]
   };
   constructor(private route: ActivatedRoute, private router: Router, private myDb: DbUtilityService) { }
@@ -90,17 +96,17 @@ export class ParticipateComponent implements OnInit {
     this.data= this.eventDetails.eventsList[this.id];
     this.name= this.data["name"];
 
-    // this.myDb.getUserDetails().subscribe((response: any)=>{
-    //   this.userDetail= response["userDetails"]
-    //   this.yourEvents= this.userDetail.yourEvents
+    this.myDb.getUserDetails().subscribe((response: any)=>{
+      this.userDetail= response["userDetails"]
+      this.yourEvents= this.userDetail.yourEvents
 
-    //   if(this.yourEvents.includes(this.name)){
-    //     this.msg= "You have Already Registered for this event"
-    //     this.alert=false;
-    //     this.success=true;
-    //     this.afterForm= false;
-    //   }
-    // })
+      if(this.yourEvents.includes(this.name)){
+        this.msg= "You have Already Registered for this event"
+        this.alert=false;
+        this.success=true;
+        this.afterForm= false;
+      }
+    })
 
     // if(this.yourEvents.includes(this.name)){
     //   this.msg= "You have Already Registered for this event"
@@ -169,6 +175,7 @@ export class ParticipateComponent implements OnInit {
       return
     }
     this.participantForm.value.event=this.id
+    this.participantForm.value.serverName= this.eventDetails.eventsList[this.id].serverName
     this.wait= true;
     this.loading= true;
 
@@ -184,13 +191,13 @@ export class ParticipateComponent implements OnInit {
         this.router.navigate([redirectUrl], {queryParams: { expired: 'true' } });
       }
       else if(response["message"]==-2){
-        this.error= "Adminssion Number doesn't match"
+        this.error= "Email doesn't match with the Logged in User"
         this.alert=true;
         this.wait= false;
         this.loading= false;
       }
       else if(response["message"]==-3){
-        this.error= "Roll Number doesn't match"
+        this.error= "Phone Number doesn't match with the Logged in User"
         this.alert=true;
         this.wait= false;
         this.loading= false;

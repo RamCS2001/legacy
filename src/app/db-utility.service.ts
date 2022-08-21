@@ -104,9 +104,15 @@ export class DbUtilityService {
     return this.http.get(this.localAllList);
   }
 
-  locacheckCollegeParticipationUrl= "http://localhost:5000/checkCollegeParticipation?event="
+  localCheckCollegeParticipationUrl= "http://localhost:5000/checkCollegeParticipation?event="
 
   checkCollegeParticipation(event: any): Observable<any>{
-    return this.http.get(this.locacheckCollegeParticipationUrl+ event);
+    return this.http.get(this.localCheckCollegeParticipationUrl+ event);
+  }
+
+  localCheckAllParticipants="http://localhost:5000/CheckAllParticipants" 
+
+  checkAllParticipant(participants: any): Observable<any>{
+    return this.http.post(this.localCheckAllParticipants, participants);
   }
 }

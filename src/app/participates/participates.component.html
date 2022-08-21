@@ -46,12 +46,12 @@
                                 <div class="row">
                                     
                                     <div class="col-6">
-                                        <label for="adminno" class="mt-3">Adminsion Number:</label>
-                                        <input id="adminno" class="form-control mt-2" formControlName="admission_number" type="text" placeholder="Adminssion Number"/>
+                                        <label for="adminno" class="mt-3">Mail Id:</label>
+                                        <input id="adminno" class="form-control mt-2" formControlName="email" type="text" placeholder="Mail Id"/>
                                     </div>
                                     <div class="col-6">
-                                        <label for="rollno" class="mt-3">Roll Number:</label>
-                                        <input id="rollno" class="form-control mt-2" formControlName="roll_number" type="text" placeholder="Roll Number"/>
+                                        <label for="rollno" class="mt-3">Phone Number:</label>
+                                        <input id="rollno" class="form-control mt-2" formControlName="phone_number" type="text" placeholder="Phone Number"/>
                                     </div>
                                     <span>--------------------------------------------------------------------------------------</span>
                                 </div> 
@@ -87,6 +87,12 @@
         data-wow-duration="1s"
         data-wow-delay="0.5s"
         >
+        <div class="alert alert-primary" role="alert">
+            All the particiapants must be registered in Legacy' 22 (This cultural Event) 
+        </div>
+        <div class="alert alert-primary" role="alert">
+            You won't be able to register the team untill <br> all participants have an account in Legacy' 22 
+        </div>
         <div class="alert alert-warning mt-3" role="alert">
             {{Linstructions}}
         </div>

@@ -63,6 +63,7 @@ export class ParticipatesComponent implements OnInit {
     },{
       id: "10",
       name: "Treasure hunt",
+      serverName: "treasurehunt",
       minNumberOfParticipates: 5,
       maxNumberOfParticipates: 5,
       maxParticipantsPerCollege: 2
@@ -70,6 +71,7 @@ export class ParticipatesComponent implements OnInit {
     },{
       id: "11",
       name: "Monsters’ Muss",
+      serverName: "themissingpiece",
       minNumberOfParticipates: 2,
       maxNumberOfParticipates: 2,
       maxParticipantsPerCollege: 2
@@ -77,12 +79,14 @@ export class ParticipatesComponent implements OnInit {
     },{
       id: "12",
       name: "Radio Mirchi",
+      serverName: "radiomirchi",
       minNumberOfParticipates: 1,
       maxNumberOfParticipates: 3,
       maxParticipantsPerCollege: 2
     },{
       id: "13",
       name: "English Potpourri",
+      serverName: "englishpotpourri",
       minNumberOfParticipates: 3,
       maxNumberOfParticipates: 3,
       maxParticipantsPerCollege: 2
@@ -90,6 +94,7 @@ export class ParticipatesComponent implements OnInit {
     },{
       id: "14",
       name: "Lyrical Hunt",
+      serverName: "lyricalhunt",
       minNumberOfParticipates: 3,
       maxNumberOfParticipates: 3,
       maxParticipantsPerCollege: 2
@@ -97,6 +102,7 @@ export class ParticipatesComponent implements OnInit {
     },{
       id: "15",
       name: "Tamil Potpourri",
+      serverName: "tamilpotpourri",
       minNumberOfParticipates: 3,
       maxNumberOfParticipates: 3,
       maxParticipantsPerCollege: 2
@@ -104,6 +110,7 @@ export class ParticipatesComponent implements OnInit {
     },{
       id: "16",
       name: "Cinematrix (Short Flim)",
+      serverName: "cinmatrix",
       minNumberOfParticipates: 5,
       maxNumberOfParticipates: 8,
       maxParticipantsPerCollege: 2
@@ -111,6 +118,7 @@ export class ParticipatesComponent implements OnInit {
     },{
       id: "17",
       name: "Quizzards of Oz",
+      serverName: "quiz",
       minNumberOfParticipates: 2,
       maxNumberOfParticipates: 2,
       maxParticipantsPerCollege: 2
@@ -118,6 +126,7 @@ export class ParticipatesComponent implements OnInit {
     },{
       id: "18",
       name: "Group Dance",   
+      serverName: "groupdance",
       minNumberOfParticipates: 4,
       maxNumberOfParticipates: 15,
       maxParticipantsPerCollege: 2
@@ -125,6 +134,7 @@ export class ParticipatesComponent implements OnInit {
     },{
       id: "19",
       name: "Poster Making",
+      serverName: "postermaking",
       minNumberOfParticipates: 2,
       maxNumberOfParticipates: 2,
       maxParticipantsPerCollege: 2
@@ -132,6 +142,7 @@ export class ParticipatesComponent implements OnInit {
     },{
       id: "20",
       name: "Rangoli",
+      serverName: "rangoli",
       minNumberOfParticipates: 2,
       maxNumberOfParticipates: 3,
       maxParticipantsPerCollege: 2
@@ -139,6 +150,7 @@ export class ParticipatesComponent implements OnInit {
     },{
       id: "21",
       name: "Dramatix",
+      serverName: "dramatix",
       minNumberOfParticipates: 4,
       maxNumberOfParticipates: 10,
       maxParticipantsPerCollege: 2
@@ -151,7 +163,8 @@ export class ParticipatesComponent implements OnInit {
   participantForm= new FormGroup({
     teamname:new FormControl('',[Validators.required]),
     participants: new FormArray([]),
-    event: new FormControl()
+    event: new FormControl(),
+    serverName: new FormControl('')
   })
 
   get participants() {
@@ -181,7 +194,6 @@ export class ParticipatesComponent implements OnInit {
     
     window.scroll(0,0);
     this.id= this.route.snapshot.params["id"];
-    this.data= this.eventDetails.eventsList[this.id];
 
     if(this.id<9){
       const redirectUrl = '/event/'+ this.id;
@@ -189,13 +201,19 @@ export class ParticipatesComponent implements OnInit {
       this.router.navigate([redirectUrl]);
       return;
     }
+    this.data= this.eventDetails.eventsList[this.id];
 
-    // if(this.id==10){
-    //   const redirectUrl = '/event/'+ this.id;
-    //   // Redirect the user
-    //   this.router.navigate([redirectUrl]);
-    //   return;
-    // }
+    this.myDb.getUserDetails().subscribe((response: any)=>{
+      this.userDetail= response["userDetails"]
+      this.yourEvents= this.userDetail.yourEvents
+
+      if(this.yourEvents.includes(this.name)){
+        this.msg= "You have Already Registered for this event"
+        this.alert=false;
+        this.success=true;
+        this.afterForm= false;
+      }
+    })
 
     this.myDb.checkCollegeParticipation(this.eventDetails.eventsList[this.id].serverName)
       .subscribe((response: any)=>{
@@ -246,16 +264,16 @@ export class ParticipatesComponent implements OnInit {
     if(this.n<this.data["maxNumberOfParticipates"]){
       const participant= new FormGroup({
         name: new FormControl('', [Validators.required]),
-        admission_number: new FormControl('', [Validators.required]),
-        roll_number: new FormControl('', [Validators.required])
+        email: new FormControl('', [Validators.required]),
+        phone_number: new FormControl('', [Validators.required])
       });
       (<FormArray>this.participantForm.get('participants')).push(participant);
     }
     else if(this.n==this.data["maxNumberOfParticipates"]){
       const participant= new FormGroup({
         name: new FormControl('', [Validators.required]),
-        admission_number: new FormControl('', [Validators.required]),
-        roll_number: new FormControl('', [Validators.required])
+        email: new FormControl('', [Validators.required]),
+        phone_number: new FormControl('', [Validators.required])
       });
       (<FormArray>this.participantForm.get('participants')).push(participant);
       this.addParticipantDisplay=false;
@@ -279,64 +297,88 @@ export class ParticipatesComponent implements OnInit {
     this.participantForm.value.event=this.id
     this.wait= true;
     this.loading= true;
-    this.myDb.participates(this.participantForm.value).subscribe((response: any)=>{
-      if(response["message"]==-1){
-        const redirectUrl = '/login';
-        // Redirect the user
-        this.router.navigate([redirectUrl], {queryParams: { expired: 'true' } });
-      }
-      else if(response["message"]==0){
-        const redirectUrl = '/login';
-        // Redirect the user
-        this.router.navigate([redirectUrl], {queryParams: { expired: 'true' } });
-      }
-      else if(response["message"]==-2){
-        window.scroll(0,0);
-        this.error= "Leader's (participant 1) Adminssion Number doesn't match to the Logged in User"
-        this.alert=true;
-        this.wait= false;
-        this.loading= false;
 
-      }
-      else if(response["message"]==-3){
-        window.scroll(0,0);
-        this.error= "Leader's (participant 1) Roll Number doesn't match to the Logged in User"
-        this.alert=true;
-        this.wait= false;
-        this.loading= false;
-      }
-      else if(response["message"]==-4){
-        window.scroll(0,0);
-        this.error= "Error Contact the admin"
-        this.alert=true;
-        this.wait= false; 
-        this.loading= false;
+    let participants= this.participantForm.value.participants
+    this.participantForm.value.serverName= this.eventDetails.eventsList[this.id].serverName
 
-      }
-      else if(response["message"]==-5){
-        window.scroll(0,0);
-        this.error= "Team Name already Exist!! Enter different Team Name"
-        this.alert=true;
-        this.wait= false; 
-        this.loading= false;
-      }
-      else if(response["message"]==1){
-        window.scroll(0,0);
-        this.msg= "Registeration Successfull"
-        this.alert=false;
-        this.success=true;
-        this.afterForm= false;
-      }
-      else{
-        window.scroll(0,0);
-
-        this.error= "Error Contact the admin"
-        this.alert=true;
-        this.wait= false;
-        this.loading= false;
-
+    this.myDb.checkAllParticipant(participants).subscribe((res: any)=>{
+      if(res){
+        
+        console.log(res)
+        let unRegUsers= res["users"]
+        if(res["message"]==-6){
+          window.scroll(0,0);
+          this.error= "Participant "+ unRegUsers.toString() + " are not Registerd in Leagcy'22"
+          this.alert=true;
+          this.wait= false; 
+          this.loading= false;
+          return
+        }
+        else if(res["message"]==-2){
+          window.scroll(0,0);
+          this.error= "Leader's (participant 1) Mail ID doesn't match to the Logged in User"
+          this.alert=true;
+          this.wait= false;
+          this.loading= false;
+          return
+        }
+        else if(res["message"]==-3){
+          window.scroll(0,0);
+          this.error= "Leader's (participant 1) Phone Number doesn't match to the Logged in User"
+          this.alert=true;
+          this.wait= false;
+          this.loading= false;
+          return
+        }
+        if(res["message"]==1){
+          this.myDb.participates(this.participantForm.value).subscribe((response: any)=>{
+            if(response["message"]==-1){
+              const redirectUrl = '/login';
+              // Redirect the user
+              this.router.navigate([redirectUrl], {queryParams: { expired: 'true' } });
+            }
+            else if(response["message"]==0){
+              const redirectUrl = '/login';
+              // Redirect the user
+              this.router.navigate([redirectUrl], {queryParams: { expired: 'true' } });
+            }
+            
+            else if(response["message"]==-4){
+              window.scroll(0,0);
+              this.error= "Error Contact the admin"
+              this.alert=true;
+              this.wait= false; 
+              this.loading= false;
+      
+            }
+            else if(response["message"]==-5){
+              window.scroll(0,0);
+              this.error= "Team Name already Exist!! Enter different Team Name"
+              this.alert=true;
+              this.wait= false; 
+              this.loading= false;
+            }
+            else if(response["message"]==1){
+              window.scroll(0,0);
+              this.msg= "Registeration Successfull"
+              this.alert=false;
+              this.success=true;
+              this.afterForm= false;
+            }
+            else{
+              window.scroll(0,0);
+      
+              this.error= "Error Contact the admin"
+              this.alert=true;
+              this.wait= false;
+              this.loading= false;
+      
+            }
+          })
+        }
       }
     })
+    
   } 
   
   back(){

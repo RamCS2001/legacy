@@ -91,8 +91,17 @@ export class ParticipateComponent implements OnInit {
   userDetail: any;
   yourEvents: string="";
   ngOnInit(): void {
+    
     window.scroll(0,0);
     this.id= this.route.snapshot.params["id"];
+    
+
+    if(this.id>8){
+      const redirectUrl = '/event/'+ this.id;
+      // Redirect the user
+      this.router.navigate([redirectUrl]);
+      return;
+    }
     this.data= this.eventDetails.eventsList[this.id];
     this.name= this.data["name"];
 
@@ -115,12 +124,7 @@ export class ParticipateComponent implements OnInit {
     //   this.afterForm= false;
     // }
 
-    if(this.id>8){
-      const redirectUrl = '/event/'+ this.id;
-      // Redirect the user
-      this.router.navigate([redirectUrl]);
-      return;
-    }
+    
 
     this.myDb.checkCollegeParticipation(this.eventDetails.eventsList[this.id].serverName)
       .subscribe((response: any)=>{

@@ -213,31 +213,34 @@ export class ParticipatesComponent implements OnInit {
         this.success=true;
         this.afterForm= false;
       }
-    })
-
-    this.myDb.checkCollegeParticipation(this.eventDetails.eventsList[this.id].serverName)
-      .subscribe((response: any)=>{
-        if(response["message"]==-1){
-          const redirectUrl = '/login';
-          // Redirect the user
-          this.router.navigate([redirectUrl], {queryParams: { expired: 'true' } });
-        }
-        else if(response["message"]==0){
-          const redirectUrl = '/login';
-          // Redirect the user
-          this.router.navigate([redirectUrl], {queryParams: { expired: 'true' } });
-        }
-        else if(response["message"]==1){
-
-          if(this.eventDetails.eventsList[this.id].maxParticipantsPerCollege<=response["currentCount"]){
-            this.msg= "Your College permit for this Event is Full Try other events... Thank You!!! "
-            this.alert=false;
-            this.success=true;
-            this.afterForm= false;
+      else{
+        this.myDb.checkCollegeParticipation(this.eventDetails.eventsList[this.id].serverName)
+        .subscribe((response: any)=>{
+          if(response["message"]==-1){
+            const redirectUrl = '/login';
+            // Redirect the user
+            this.router.navigate([redirectUrl], {queryParams: { expired: 'true' } });
           }
-        }
-        
+          else if(response["message"]==0){
+            const redirectUrl = '/login';
+            // Redirect the user
+            this.router.navigate([redirectUrl], {queryParams: { expired: 'true' } });
+          }
+          else if(response["message"]==1){
+  
+            if(this.eventDetails.eventsList[this.id].maxParticipantsPerCollege<=response["currentCount"]){
+              this.msg= "Your College permit for this Event is Full Try other events... Thank You!!! "
+              this.alert=false;
+              this.success=true;
+              this.afterForm= false;
+            }
+          }
+          
+      })
+      }
     })
+
+    
 
     this.Linstructions= "Participant 1 will Consider as the Team Leader";
     this.L2instructions= "Team Leader should have an account in the Legacy'22"
@@ -306,7 +309,15 @@ export class ParticipatesComponent implements OnInit {
         
         console.log(res)
         let unRegUsers= res["users"]
-        if(res["message"]==-6){
+        if(res["message"]==-7){
+          window.scroll(0,0);
+          this.error= "Mixed Gender participation not allowed..."
+          this.alert=true;
+          this.wait= false; 
+          this.loading= false;
+          return
+        }
+        else if(res["message"]==-6){
           window.scroll(0,0);
           this.error= "Participant "+ unRegUsers.toString() + " are not Registerd in Leagcy'22"
           this.alert=true;

@@ -11,11 +11,11 @@ export class DbUtilityService {
 
   public registerationSuccess= new BehaviorSubject<any>(""); 
 
-  localCreateUserUrl= "http://legacy-mepco.herokuapp.com/createuser";
-  localLoginUserUrl= "http://legacy-mepco.herokuapp.com/loginuser";
-  localGetUserDetailsUrl= "http://legacy-mepco.herokuapp.com/getuserdetails"
-  localParticipateUrl= "http://legacy-mepco.herokuapp.com/participate"
-  localParticipatesUrl= "http://legacy-mepco.herokuapp.com/participates"
+  localCreateUserUrl= "https://legacy-mepco.herokuapp.com/createuser";
+  localLoginUserUrl= "https://legacy-mepco.herokuapp.com/loginuser";
+  localGetUserDetailsUrl= "https://legacy-mepco.herokuapp.com/getuserdetails"
+  localParticipateUrl= "https://legacy-mepco.herokuapp.com/participate"
+  localParticipatesUrl= "https://legacy-mepco.herokuapp.com/participates"
   
   constructor(private http:HttpClient) { }
 
@@ -87,9 +87,9 @@ export class DbUtilityService {
     }
   }
 
-  localIndividuallist= "http://legacy-mepco.herokuapp.com/Individuallist?event="
-  localGroupList= "http://legacy-mepco.herokuapp.com/Grouplist?event="
-  localAllList= "http://legacy-mepco.herokuapp.com/all"
+  localIndividuallist= "https://legacy-mepco.herokuapp.com/Individuallist?event="
+  localGroupList= "https://legacy-mepco.herokuapp.com/Grouplist?event="
+  localAllList= "https://legacy-mepco.herokuapp.com/all"
 
   getIndividualList(event: any): Observable<any>{
     // console.log(this.localGetList+event)
@@ -104,13 +104,13 @@ export class DbUtilityService {
     return this.http.get(this.localAllList);
   }
 
-  localCheckCollegeParticipationUrl= "http://legacy-mepco.herokuapp.com/checkCollegeParticipation?event="
+  localCheckCollegeParticipationUrl= "https://legacy-mepco.herokuapp.com/checkCollegeParticipation?event="
 
   checkCollegeParticipation(event: any): Observable<any>{
     return this.http.get(this.localCheckCollegeParticipationUrl+ event);
   }
 
-  localCheckAllParticipants="http://legacy-mepco.herokuapp.com/CheckAllParticipants" 
+  localCheckAllParticipants="https://legacy-mepco.herokuapp.com/CheckAllParticipants" 
 
   checkAllParticipant(participants: any): Observable<any>{
     return this.http.post(this.localCheckAllParticipants, participants);

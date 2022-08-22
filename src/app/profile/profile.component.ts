@@ -13,9 +13,10 @@ export class ProfileComponent implements OnInit {
   name: any;
   userDetail: any;
   class: any;
-  rollno: any;
-  adminno: any;
+  phoneNo: any;
   mail: any;
+  clg: any;
+
   yourEvents: any;
   public regPaid= false;
   public SubmittedAccomadationReqButton= false;
@@ -46,9 +47,9 @@ export class ProfileComponent implements OnInit {
         return
       }
       this.userDetail= response["userDetails"]
-      this.class= this.userDetail.year + " " +this.userDetail.department + " " +this.userDetail.section
-      this.rollno= this.userDetail.roll_number;
-      this.adminno= this.userDetail.admission_number;
+      this.class= this.userDetail.degree + " " +this.userDetail.year + " " +this.userDetail.department
+      this.clg= this.userDetail.college;
+      this.phoneNo= this.userDetail.phone_number;
       this.mail= this.userDetail.email
       this.yourEvents= this.userDetail.yourEvents
     })

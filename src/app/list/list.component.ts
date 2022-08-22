@@ -11,7 +11,10 @@ export class ListComponent implements OnInit {
   @ViewChild("participantsTable") table: ElementRef | undefined;
   searchCollege = false
   searchGender = false
-  check = ""
+  selectedCollege = ''
+  selectedGender = ''
+  colleges = [ "Mepco" , "Kamaraj" , "Kln" ]
+  genders = [ "Male" , "Female" ]
   constructor(private route: ActivatedRoute, private router: Router, private myDb: DbUtilityService) { }
 
   eventDetails={
@@ -129,8 +132,15 @@ export class ListComponent implements OnInit {
   public individualList= false;
   public error= false;
 
-  headers= ["name", "admission_number","roll_number", "email", "year", "department", "section"];
+  headers:string[]= ["Name", "Gender", "College", "Email", "Year", "Degree", "Department"];
   teamNames :any= []; 
+//   participantDetails = [ { 'Name' : "saravana kumar" , "Gender": "Male" , "College" : "Mepco" , "Year": "III" , "Degree": "UG", "Department": "CSE" , "Email": "hello@mail.com" },
+//   { 'Name' : "Krithika shri" , "Gender": "Female" , "College" : "Mepco" , "Year": "III" , "Degree": "UG", "Department": "CSE", "Email": "hello@mail.com" },
+//   { 'Name' : "kumar saravana" ,"Gender": "Male" , "College" : "Kamaraj" , "Year": "III" , "Degree": "UG", "Department": "CSE", "Email": "hello@mail.com" },
+//   { 'Name' : "shri krithika" ,"Gender": "Female" , "College" : "Kamaraj" , "Year": "III" , "Degree": "UG", "Department": "CSE", "Email": "hello@mail.com" }
+//  ]
+participantDetails = []
+ filteredDetails = this.participantDetails
   ngOnInit(): void {
     
     this.id= this.route.snapshot.params["id"];
@@ -143,9 +153,9 @@ export class ListComponent implements OnInit {
           this.router.navigate([redirectUrl], {queryParams: { expired: 'true' } });
           return
         }
-        if(response["message"]==1){
-          this.eventCount=response["data"].length;
-          this.data= response["data"]
+        if(true){
+          this.eventCount= 1 //response["data"].length;
+          this.data= {}//response["data"]
           this.eventName= this.eventDetails.eventsList[this.id].name;
           this.GroupList=false;
           this.error=false;
@@ -154,7 +164,7 @@ export class ListComponent implements OnInit {
         else{
           this.error=true
         }
-      })
+      } )
     }
     else if(9<=this.id && this.id <22){
       this.myDb.getGroupList(this.id).subscribe((response: any)=>{
@@ -192,7 +202,8 @@ export class ListComponent implements OnInit {
         }
         if(response["message"]==1){
           this.eventCount=response["data"].length;
-          this.data= response["data"]
+          this.participantDetails= response["data"]
+          console.log ( "response data assigned!" )
           this.eventName= this.eventDetails.eventsList[this.id].name;
           this.GroupList=false;
           this.error=false;
@@ -234,5 +245,21 @@ export class ListComponent implements OnInit {
   disableFilter (  ) {
      this.searchGender = false
      this.searchCollege = false
+     this.filteredDetails = this.participantDetails
   }
-}
+  clickedGender ( gender: string ) {
+    this.filter ( "" , gender )
+    console.log ( gender )
+  }
+  clickedCollege ( college: string ) {
+    this.filter ( college , "" )
+    console.log ( college )
+  }
+  filter ( college: string, gender: string ) {
+    this.filteredDetails = this.filteredDetails.filter ( ( participant , index , array  )=> {
+        console.log ( ( ( participant["Gender"] as string ).includes ( gender ) && ( participant [ "College" ] as string ).includes ( college ) ) )
+        return ( ( ( participant["Gender"] as string ).includes ( gender ) && ( participant [ "College" ] as string ).includes ( college ) ) )
+    } )
+    console.log ( this.participantDetails )
+  }
+ }

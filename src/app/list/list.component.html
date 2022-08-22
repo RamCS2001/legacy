@@ -19,29 +19,15 @@
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           select college name
         </button>
-        <select class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <option><a class="dropdown-item" href="#">Mepco</a><option>
-          <option><a class="dropdown-item" href="#">Kamaraj</a></option>
-          <option><a class="dropdown-item" href="#">Kln</a></option>
-        </select>
+        <ul  class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li *ngFor="let name of colleges" style="cursor:pointer;" (click)="clickedCollege(name)" class="dropdown-item" value="mepco">{{name}}<li>
+        </ul>
       </div>
     <div *ngIf="searchGender" style="float: right; margin-right: 50px; margin-top: 10px">
-        <div  class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+        <div *ngFor="let gender of genders" class="form-check">
+            <input (click)="clickedGender(gender)" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
             <label class="form-check-label" for="flexRadioDefault1">
-              Male
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-            <label class="form-check-label" for="flexRadioDefault2">
-              Female
-            </label>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-            <label class="form-check-label" for="flexRadioDefault2">
-              Both
+              {{gender}}
             </label>
         </div>
     </div>
@@ -68,19 +54,31 @@
         <table class="table table-hover table-condensed table-striped" id="participantsTable">
             <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Admission number</th>
-                  <th>Roll Number</th>
-                  <th>E-mail</th>
-                  <th>Year</th>
-                  <th>Dept</th>
-                  <th>Section</th>
+                  <th *ngFor="let heading of headers" >{{heading}}</th>
                 </tr>
               </thead>
             <tbody>
-                <tr *ngFor="let i of data; let index = index">
-                    <td *ngFor="let c of headers">
-                        {{i[c]}}
+                <tr *ngFor="let participant of filteredDetails; let index = index">
+                    <td>
+                        {{participant["Name"]}}
+                    </td>
+                    <td>
+                        {{participant["Gender"]}}
+                    </td>
+                    <td>
+                        {{participant["College"]}}
+                    </td>
+                    <td>
+                        {{participant["Email"]}}
+                    </td>
+                    <td>
+                        {{participant["Year"]}}
+                    </td>
+                    <td>
+                        {{participant["Degree"]}}
+                    </td>
+                    <td>
+                        {{participant["Department"]}}
                     </td>
                 </tr>
             </tbody>

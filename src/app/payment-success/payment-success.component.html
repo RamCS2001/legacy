@@ -1,0 +1,9 @@
+<div style="padding-right: 30px!important; margin-left:20%; margin-top: 10%" [ngClass]="success?'alert alert-success':'alert alert-danger'" role="alert">
+    <h4 style="margin-top:10px" class="alert-heading">{{success?'payment collected successfully!':'payment failed try after some time!'}}</h4>
+    <p>Thankyou for registering in legacy-mepco-2022</p>
+    <hr>
+    <p class="mb-0">
+        <a class="btn btn-primary" routerLink="" role="button">Go Home</a>
+        <a style="margin-left:10px" class="btn btn-primary" routerLink="../profile" role="button">Pay Again</a>
+    </p>
+</div>

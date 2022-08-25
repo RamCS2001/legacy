@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
   constructor(private myDb: DbUtilityService, private router: Router) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem("username")=="admin"){
+    if(localStorage.getItem("username")=="Admin"){
       const redirectUrl = '/admin';
       this.router.navigate([redirectUrl]);
     }

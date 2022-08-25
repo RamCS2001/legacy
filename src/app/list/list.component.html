@@ -17,12 +17,12 @@
     </div>
     <div *ngIf="searchCollege" style="float: right; margin-right: 54px; margin-top: 10px" class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          select college name
+            select college name
         </button>
         <ul  class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li *ngFor="let name of colleges" style="cursor:pointer;" (click)="clickedCollege(name)" class="dropdown-item" value="mepco">{{name}}<li>
+        <li *ngFor="let name of colleges" style="cursor:pointer;" (click)="clickedCollege(name)" class="dropdown-item" value="mepco">{{name}}<li>
         </ul>
-      </div>
+    </div>
     <div *ngIf="searchGender" style="float: right; margin-right: 50px; margin-top: 10px">
         <div *ngFor="let gender of genders" class="form-check">
             <input (click)="clickedGender(gender)" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">

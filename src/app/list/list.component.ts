@@ -154,8 +154,8 @@ participantDetails = []
           return
         }
         if(true){
-          this.eventCount= 1 //response["data"].length;
-          this.data= {}//response["data"]
+          this.eventCount= response["data"].length;
+          this.data= response["data"]
           this.eventName= this.eventDetails.eventsList[this.id].name;
           this.GroupList=false;
           this.error=false;

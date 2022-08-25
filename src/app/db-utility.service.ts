@@ -111,8 +111,12 @@ export class DbUtilityService {
   }
 
   localCheckAllParticipants="https://legacy-mepco.herokuapp.com/CheckAllParticipants" 
+  payuSecureUrl = "https://secure.payu.in/_payment"
 
   checkAllParticipant(participants: any): Observable<any>{
     return this.http.post(this.localCheckAllParticipants, participants);
+  }
+  pay (  ) : Observable < any > {
+    return this.http.post ( "http://localhost:5000/payhash" , { amount: 1000 } )
   }
 }

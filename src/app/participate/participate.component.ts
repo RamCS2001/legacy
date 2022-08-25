@@ -22,8 +22,8 @@ export class ParticipateComponent implements OnInit {
   eventDetails={
     "eventsList": [{
       id: "0",
-      name: "As You Like It",
-      serverName: "asyoulikeit",
+      name: "SYMPHONIQUE (Orchestra)",
+      serverName: "symphonique",
       maxParticipantsPerCollege: 1
     },{
       id: "1",

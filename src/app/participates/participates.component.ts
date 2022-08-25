@@ -14,146 +14,208 @@ export class ParticipatesComponent implements OnInit {
   eventDetails={
     "eventsList": [{
       id: "0",
-      name: "As You Like It",
-      serverName: "asyoulikeit",
+      name: "நீயா நானா?",
+      serverName: "tamildebate",
+      maxParticipantsPerCollege: 3
+    },{
+      id: "1",
+      name: "MARTIAL ARTS",
+      serverName: "martialarts",
       maxParticipantsPerCollege: 1
     },{
       id: "1",
-      name: "Best Manager",
+      name: "BEST MANAGER",
       serverName: "bestmanager",
-      maxParticipantsPerCollege: 1
-    },{
-      id: "1",
-      name: "Solo Dance",
-      maxParticipantsPerCollege: 1
+      maxParticipantsPerCollege: 5
     },{
       id: "3",
-      name: "Solo Singing",
-      maxParticipantsPerCollege: 1
+      name: "VOICE OF LEGACY (Solo singing)",
+      maxParticipantsPerCollege: 1,
+      serverName: "voiceoflegacy"
     },{
       id: "4",
-      name: "Solo Instrumental",
-      maxParticipantsPerCollege: 1
+      name: "MUSIC UNPLUGGED (Solo Instrumental)",
+      maxParticipantsPerCollege: 1,
+      serverName: "musicunplugged"
     },{
       id: "5",
-      name: "Pixie",
-      maxParticipantsPerCollege: 1
-     
+      name: "கவித்திடல்",
+      maxParticipantsPerCollege: 3,
+      serverName: "kavithaigal"
     },{
       id: "6",
-      name: "Pencil Sketching",
-      maxParticipantsPerCollege: 1
+      name: "PIXIE (PHOTO CONTEST)",
+      maxParticipantsPerCollege: 1,
+      serverName: "pixie"
      
     },{
       id: "7",
       name: "Yoga",
-      maxParticipantsPerCollege: 1
-
+      maxParticipantsPerCollege: 1,
+      serverName: "yoga"
     },{
       id: "8",
-      name: "Ezhuthaani",
-      maxParticipantsPerCollege: 1
+      name: "Debate Guru",
+      maxParticipantsPerCollege: 6,
+      serverName: "debateguru"
     },{
       id: "9",
-      name: "Divide and Conquer",
+      name: "MAKE YOUR MOVE (Solo Dance)",
+      maxParticipantsPerCollege: 1,
+      serverName: "makeyourmove"
+    },{
+      id: "10",
+      name: "EXTEMPORE",
+      maxParticipantsPerCollege: 1,
+      serverName: "extempore"
+    },{
+      id: "11",
+      name: "PENCIL SKETCHING",
+      maxParticipantsPerCollege: 1,
+      serverName: "pencilsketching"
+    },{
+      id: "12",
+      name: "SYMPHONIQUE (Orchestra)",
+      minNumberOfParticipates: 6,
+      maxNumberOfParticipates: 10,
+      serverName: "symphonique",
+      maxParticipantsPerCollege: 1
+    },{
+      id: "13",
+      name: "DIVIDE AND CONQUER (MULTITASKING)",
       minNumberOfParticipates: 5,
       maxNumberOfParticipates: 5,
       serverName: "divideandconquer",
       maxParticipantsPerCollege: 2
     },{
-      id: "10",
-      name: "Treasure hunt",
-      serverName: "treasurehunt",
-      minNumberOfParticipates: 5,
-      maxNumberOfParticipates: 5,
-      maxParticipantsPerCollege: 2
-      
-    },{
-      id: "11",
-      name: "Monsters’ Muss",
-      serverName: "themissingpiece",
-      minNumberOfParticipates: 2,
-      maxNumberOfParticipates: 2,
-      maxParticipantsPerCollege: 2
-
-    },{
-      id: "12",
-      name: "Radio Mirchi",
-      serverName: "radiomirchi",
-      minNumberOfParticipates: 1,
-      maxNumberOfParticipates: 3,
-      maxParticipantsPerCollege: 2
-    },{
-      id: "13",
-      name: "English Potpourri",
-      serverName: "englishpotpourri",
-      minNumberOfParticipates: 3,
-      maxNumberOfParticipates: 3,
-      maxParticipantsPerCollege: 2
-
-    },{
       id: "14",
-      name: "Lyrical Hunt",
-      serverName: "lyricalhunt",
+      name: "MONSTERS’ MUSS (English Language Game)",
+      serverName: "monstersmuss",
       minNumberOfParticipates: 3,
       maxNumberOfParticipates: 3,
-      maxParticipantsPerCollege: 2
-
+      maxParticipantsPerCollege: 1
     },{
       id: "15",
-      name: "Tamil Potpourri",
-      serverName: "tamilpotpourri",
-      minNumberOfParticipates: 3,
+      name: "KALAKKAL KALATTA",
+      serverName: "kalakkalkalatta",
+      minNumberOfParticipates: 1,
       maxNumberOfParticipates: 3,
       maxParticipantsPerCollege: 2
 
     },{
       id: "16",
-      name: "Cinematrix (Short Flim)",
-      serverName: "cinmatrix",
-      minNumberOfParticipates: 5,
-      maxNumberOfParticipates: 8,
+      name: "SHERLOCK HOLMES",
+      serverName: "sherlockholmes",
+      minNumberOfParticipates: 2,
+      maxNumberOfParticipates: 2,
       maxParticipantsPerCollege: 2
 
     },{
       id: "17",
-      name: "Quizzards of Oz",
-      serverName: "quiz",
+      name: "QUIZZARDS (QUIZ)",
+      serverName: "quizzards",
       minNumberOfParticipates: 2,
       maxNumberOfParticipates: 2,
-      maxParticipantsPerCollege: 2
-
+      maxParticipantsPerCollege: 1
     },{
       id: "18",
-      name: "Group Dance",   
-      serverName: "groupdance",
-      minNumberOfParticipates: 4,
-      maxNumberOfParticipates: 15,
-      maxParticipantsPerCollege: 2
+      name: "RANGOLI",
+      serverName: "rangoli",
+      minNumberOfParticipates: 2,
+      maxNumberOfParticipates: 2,
+      maxParticipantsPerCollege: 1
 
     },{
       id: "19",
-      name: "Poster Making",
-      serverName: "postermaking",
-      minNumberOfParticipates: 2,
-      maxNumberOfParticipates: 2,
-      maxParticipantsPerCollege: 2
-
-    },{
-      id: "20",
-      name: "Rangoli",
-      serverName: "rangoli",
-      minNumberOfParticipates: 2,
+      name: "GRAPHIX (TRAILER TIME)",
+      serverName: "graphix",
+      minNumberOfParticipates: 3,
       maxNumberOfParticipates: 3,
       maxParticipantsPerCollege: 2
 
     },{
+      id: "20",
+      name: "CHOREO BOOM (Group Dance)",
+      serverName: "choreoboom",
+      minNumberOfParticipates: 6,
+      maxNumberOfParticipates: 12,
+      maxParticipantsPerCollege: 1
+
+    },{
       id: "21",
-      name: "Dramatix",
-      serverName: "dramatix",
-      minNumberOfParticipates: 4,
-      maxNumberOfParticipates: 10,
+      name: "IDEA PRESENTATION",   
+      serverName: "ideapresentation",
+      minNumberOfParticipates: 3,
+      maxNumberOfParticipates: 5,
       maxParticipantsPerCollege: 2
+
+    },{
+      id: "22",
+      name: "MARKETOMANIA",
+      serverName: "marketomania",
+      minNumberOfParticipates: 3,
+      maxNumberOfParticipates: 3,
+      maxParticipantsPerCollege: 2
+
+    },{
+      id: "23",
+      name: "DRAMATICS",
+      serverName: "dramatics",
+      minNumberOfParticipates: 8,
+      maxNumberOfParticipates: 10,
+      maxParticipantsPerCollege: 1
+    },{
+      id: "24",
+      name: "CINEMATRIX (SHORT FILM)",
+      serverName: "cinematrix",
+      minNumberOfParticipates: 4,
+      maxNumberOfParticipates: 8,
+      maxParticipantsPerCollege: 1
+    },{
+      id: "25",
+      name: "LIPHOMANIAC (SPELL BEE)",
+      serverName: "liphomaniac",
+      minNumberOfParticipates: 4,
+      maxNumberOfParticipates: 5,
+      maxParticipantsPerCollege: 3
+    },{
+      id: "26",
+      name: "EXPRESSIONS (FACE PAINTING)",
+      serverName: "expressions",
+      minNumberOfParticipates: 2,
+      maxNumberOfParticipates: 2,
+      maxParticipantsPerCollege: 1
+      
+    },{
+      id: "27",
+      name: "TREASURE HUNT",
+      serverName: "treasurehunt",
+      minNumberOfParticipates: 5,
+      maxNumberOfParticipates: 5,
+      maxParticipantsPerCollege: 2
+    },{
+      id: "28",
+      name: "WAR WITH WORDS",
+      serverName: "warwithwords",
+      minNumberOfParticipates: 3,
+      maxNumberOfParticipates: 3,
+      maxParticipantsPerCollege: 1
+
+    },{
+      id: "29",
+      name: "மறுவார்த்தை (Translation)",
+      serverName: "translation",
+      minNumberOfParticipates: 2,
+      maxNumberOfParticipates: 2,
+      maxParticipantsPerCollege: 2
+
+    },{
+      id: "30",
+      name: "LYRICAL HUNT",
+      serverName: "lyricalhunt",
+      minNumberOfParticipates: 3,
+      maxNumberOfParticipates: 3,
+      maxParticipantsPerCollege: 1
 
     }]
   };
@@ -195,7 +257,7 @@ export class ParticipatesComponent implements OnInit {
     window.scroll(0,0);
     this.id= this.route.snapshot.params["id"];
 
-    if(this.id<9){
+    if(this.id<12){
       const redirectUrl = '/event/'+ this.id;
       // Redirect the user
       this.router.navigate([redirectUrl]);

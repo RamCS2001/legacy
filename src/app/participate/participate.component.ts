@@ -22,39 +22,39 @@ export class ParticipateComponent implements OnInit {
   eventDetails={
     "eventsList": [{
       id: "0",
-      name: "SYMPHONIQUE (Orchestra)",
-      serverName: "symphonique",
+      name: "நீயா நானா?",
+      serverName: "tamildebate",
+      maxParticipantsPerCollege: 3
+    },{
+      id: "1",
+      name: "MARTIAL ARTS",
+      serverName: "martialarts",
       maxParticipantsPerCollege: 1
     },{
       id: "1",
-      name: "Best Manager",
+      name: "BEST MANAGER",
       serverName: "bestmanager",
-      maxParticipantsPerCollege: 2
-    },{
-      id: "1",
-      name: "Solo Dance",
-      serverName: "solodance",
-      maxParticipantsPerCollege: 1
+      maxParticipantsPerCollege: 5
     },{
       id: "3",
-      name: "Solo Singing",
+      name: "VOICE OF LEGACY (Solo singing)",
       maxParticipantsPerCollege: 1,
-      serverName: "solosinging"
+      serverName: "voiceoflegacy"
     },{
       id: "4",
-      name: "Solo Instrumental",
+      name: "MUSIC UNPLUGGED (Solo Instrumental)",
       maxParticipantsPerCollege: 1,
-      serverName: "soloinstrumental"
+      serverName: "musicunplugged"
     },{
       id: "5",
-      name: "Pixie",
-      maxParticipantsPerCollege: 1,
-      serverName: "pixie"
+      name: "கவித்திடல்",
+      maxParticipantsPerCollege: 3,
+      serverName: "kavithaigal"
     },{
       id: "6",
-      name: "Pencil Sketching",
+      name: "PIXIE (PHOTO CONTEST)",
       maxParticipantsPerCollege: 1,
-      serverName: "pencilsketching"
+      serverName: "pixie"
      
     },{
       id: "7",
@@ -63,9 +63,24 @@ export class ParticipateComponent implements OnInit {
       serverName: "yoga"
     },{
       id: "8",
-      name: "Ezhuthaani",
+      name: "Debate Guru",
+      maxParticipantsPerCollege: 6,
+      serverName: "debateguru"
+    },{
+      id: "9",
+      name: "MAKE YOUR MOVE (Solo Dance)",
       maxParticipantsPerCollege: 1,
-      serverName: "ezhuthaani"
+      serverName: "makeyourmove"
+    },{
+      id: "10",
+      name: "EXTEMPORE",
+      maxParticipantsPerCollege: 1,
+      serverName: "extempore"
+    },{
+      id: "11",
+      name: "PENCIL SKETCHING",
+      maxParticipantsPerCollege: 1,
+      serverName: "pencilsketching"
     }]
   };
   constructor(private route: ActivatedRoute, private router: Router, private myDb: DbUtilityService) { }
@@ -96,7 +111,7 @@ export class ParticipateComponent implements OnInit {
     this.id= this.route.snapshot.params["id"];
     
 
-    if(this.id>8){
+    if(this.id>12){
       const redirectUrl = '/event/'+ this.id;
       // Redirect the user
       this.router.navigate([redirectUrl]);

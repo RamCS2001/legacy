@@ -8,6 +8,7 @@ import { ListComponent } from './list/list.component';
 import { LoginComponent } from './login/login.component';
 import { ParticipateComponent } from './participate/participate.component';
 import { ParticipatesComponent } from './participates/participates.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: "participate/:id", component:ParticipateComponent, canActivate:[AuthGuard]},
   {path: "participates/:id", component:ParticipatesComponent, canActivate:[AuthGuard]},
   {path: "admin", component:AdminComponent, canActivate:[AuthGuard]},
-  {path: "list/:id", component:ListComponent, canActivate:[AuthGuard]}
+  {path: "list/:id", component:ListComponent, canActivate:[AuthGuard]},
+  {path: "paid", component:PaymentSuccessComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

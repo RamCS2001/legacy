@@ -91,9 +91,13 @@ export class DbUtilityService {
   // localGroupList= "https://legacymepco.herokuapp.com/Grouplist?event="
   // localAllList= "https://legacymepco.herokuapp.com/all"
 
-  localIndividuallist= "http://localhost:5000/Individuallist?event="
-  localGroupList= "http://localhost:5000/Grouplist?event="
-  localAllList= "http://localhost:5000/all"
+  // localIndividuallist= "http://localhost:5000/Individuallist?event="
+  // localGroupList= "http://localhost:5000/Grouplist?event="
+  // localAllList= "http://localhost:5000/all"
+
+  localIndividuallist= "https://legacymepco.herokuapp.com/Individuallist?event="
+  localGroupList= "https://legacymepco.herokuapp.com/Grouplist?event="
+  localAllList= "https://legacymepco.herokuapp.com/all"
 
   getIndividualList(event: any): Observable<any>{
     // console.log(this.localGetList+event)
@@ -120,8 +124,8 @@ export class DbUtilityService {
   checkAllParticipant(participants: any): Observable<any>{
     return this.http.post(this.localCheckAllParticipants, participants);
   }
-  pay (  ) : Observable < any > {
-    return this.http.post ( "http://localhost:5000/payhash" , { amount: 1000 } )
+  pay ( details: any ) : Observable < any > {
+    return this.http.post ( "https://legacymepco.herokuapp.com/payhash" , details )
   }
 
   localGetCollegeList="http://localhost:5000/getcollegelist"

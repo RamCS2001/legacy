@@ -45,7 +45,10 @@
                         <td>
                           <div class="row">
                             <div class="col-4">
-                              <input readonly class="form-control" value="200" >
+                              <input readonly class="form-control" value="{{yesChecked?'300':'200'}}" />
+                              <div class="alert alert-light" role="alert">
+                                registration fee: 200  <span *ngIf="yesChecked"> + accomodation fee: 100</span>
+                              </div>
                             </div>
                             <div class="col-4">
                               <button (click)="pay()" class="btn btn-primary" [disabled]="regPaid">pay</button>
@@ -57,14 +60,13 @@
                         <td>Do you Need Accomadation:</td>
                           <td>
                             <form [formGroup]="accomadationForm" (ngSubmit)="submitAccomadationReq()">
-                              <input type="radio" style="margin-right: 5px;" name="accomadation" value="yes" id="yesRadio" [checked]="yesChecked"/>Yes
-                              <input type="radio" style="margin-right: 5px; margin-left: 5px;" name="accomadation" value="no" id="noRadio" [checked]="noChecked"/>No
-
+                              <input type="radio" style="margin-right: 5px;" name="accomadation" value="yes" id="yesRadio" (click)="accomodationSelected()"/>Yes
+                              <input checked (click)="accomodationNotSelected()" type="radio" style="margin-right: 5px; margin-left: 5px;" name="accomadation" value="no" id="noRadio"/>No
                               <button class="btn btn-primary" [disabled]="SubmittedAccomadationReqButton" style="margin-left: 5px; height: 40px;">Submit</button>
                             </form>  
                           </td>
                       </tr>
-                      <tr>
+                      <!-- <tr>
                         <td>Pay Accomadation Fee:</td>
                         <td>
                           <div class="row">
@@ -76,7 +78,7 @@
                             </div>
                           </div>
                         </td>
-                      </tr>
+                      </tr> -->
                     </tbody>
                   </table>
                 </div>

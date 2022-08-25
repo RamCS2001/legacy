@@ -11,11 +11,11 @@ export class DbUtilityService {
 
   public registerationSuccess= new BehaviorSubject<any>(""); 
 
-  localCreateUserUrl= "https://legacy-mepco.herokuapp.com/createuser";
-  localLoginUserUrl= "https://legacy-mepco.herokuapp.com/loginuser";
-  localGetUserDetailsUrl= "https://legacy-mepco.herokuapp.com/getuserdetails"
-  localParticipateUrl= "https://legacy-mepco.herokuapp.com/participate"
-  localParticipatesUrl= "https://legacy-mepco.herokuapp.com/participates"
+  localCreateUserUrl= "https://legacymepco.herokuapp.com/createuser";
+  localLoginUserUrl= "https://legacymepco.herokuapp.com/loginuser";
+  localGetUserDetailsUrl= "https://legacymepco.herokuapp.com/getuserdetails"
+  localParticipateUrl= "https://legacymepco.herokuapp.com/participate"
+  localParticipatesUrl= "https://legacymepco.herokuapp.com/participates"
   
   constructor(private http:HttpClient) { }
 
@@ -87,9 +87,9 @@ export class DbUtilityService {
     }
   }
 
-  localIndividuallist= "https://legacy-mepco.herokuapp.com/Individuallist?event="
-  localGroupList= "https://legacy-mepco.herokuapp.com/Grouplist?event="
-  localAllList= "https://legacy-mepco.herokuapp.com/all"
+  localIndividuallist= "https://legacymepco.herokuapp.com/Individuallist?event="
+  localGroupList= "https://legacymepco.herokuapp.com/Grouplist?event="
+  localAllList= "https://legacymepco.herokuapp.com/all"
 
   getIndividualList(event: any): Observable<any>{
     // console.log(this.localGetList+event)
@@ -104,19 +104,19 @@ export class DbUtilityService {
     return this.http.get(this.localAllList);
   }
 
-  localCheckCollegeParticipationUrl= "https://legacy-mepco.herokuapp.com/checkCollegeParticipation?event="
+  localCheckCollegeParticipationUrl= "https://legacymepco.herokuapp.com/checkCollegeParticipation?event="
 
   checkCollegeParticipation(event: any): Observable<any>{
     return this.http.get(this.localCheckCollegeParticipationUrl+ event);
   }
 
-  localCheckAllParticipants="https://legacy-mepco.herokuapp.com/CheckAllParticipants" 
+  localCheckAllParticipants="https://legacymepco.herokuapp.com/CheckAllParticipants" 
   payuSecureUrl = "https://secure.payu.in/_payment"
 
   checkAllParticipant(participants: any): Observable<any>{
     return this.http.post(this.localCheckAllParticipants, participants);
   }
-  pay (  ) : Observable < any > {
-    return this.http.post ( "http://localhost:5000/payhash" , { amount: 1000 } )
+  pay ( details: any ) : Observable < any > {
+    return this.http.post ( "https://legacymepco.herokuapp.com/payhash" , details )
   }
 }

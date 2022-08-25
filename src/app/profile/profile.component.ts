@@ -25,7 +25,6 @@ export class ProfileComponent implements OnInit {
   public disableAccomadtionSelect= false;
 
   public yesChecked= false;
-  public noChecked= true;
   accomadationForm= new FormGroup({
     accomadation: new FormControl('',[Validators.required])
   })
@@ -71,9 +70,14 @@ export class ProfileComponent implements OnInit {
     // Redirect the user
     this.router.navigate([redirectUrl], {queryParams: { logout: 'true' }});
   }
-
+  accomodationSelected ( ): void {
+    this.yesChecked = true
+  }
+  accomodationNotSelected ( ) : void  {
+    this.yesChecked = false
+  }
   pay ( ) {
-    this.myDb.pay ( ).subscribe ( ( response => {
+    this.myDb.pay ( { amount: 200 + ( this.yesChecked ? 100 : 0 ) } ).subscribe ( ( response => {
       let htmlBody = `
       <html>
       <body>
@@ -84,8 +88,8 @@ export class ProfileComponent implements OnInit {
       <input type="hidden" name="amount" value="${response.data.amount}" />
       <input type="hidden" name="email" value="${response.data.email}" />
       <input type="hidden" name="firstname" value="${response.data.firstname}" />
-      <input type="hidden" name="surl" value="https://apiplayground-response.herokuapp.com/" />
-      <input type="hidden" name="furl" value="https://apiplayground-response.herokuapp.com/" />
+      <input type="hidden" name="surl" value="https://legacymepco.herokuapp.com/payment_status" />
+      <input type="hidden" name="furl" value="https://legacymepco.herokuapp.com/payment_status" />
       <input type="hidden" name="phone" value="${response.data.phone}" />
       <input type="hidden" name="hash" value="${response.data.hash}" />
       <input hidden type="submit" value="submit"> </form>

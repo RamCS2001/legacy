@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DbUtilityService } from '../db-utility.service';
 
@@ -71,4 +71,30 @@ export class ProfileComponent implements OnInit {
     // Redirect the user
     this.router.navigate([redirectUrl], {queryParams: { logout: 'true' }});
   }
+
+  pay ( ) {
+    this.myDb.pay ( ).subscribe ( ( response => {
+      let htmlBody = `
+      <html>
+      <body>
+      <form action="${response.payurl}" id = "forms" method="post">
+      <input type="hidden" name="key" value="${response.data.key}" />
+      <input type="hidden" name="txnid" value="${response.data.txnid}" />
+      <input type="hidden" name="productinfo" value="${response.data.productinfo}" />
+      <input type="hidden" name="amount" value="${response.data.amount}" />
+      <input type="hidden" name="email" value="${response.data.email}" />
+      <input type="hidden" name="firstname" value="${response.data.firstname}" />
+      <input type="hidden" name="surl" value="https://apiplayground-response.herokuapp.com/" />
+      <input type="hidden" name="furl" value="https://apiplayground-response.herokuapp.com/" />
+      <input type="hidden" name="phone" value="${response.data.phone}" />
+      <input type="hidden" name="hash" value="${response.data.hash}" />
+      <input hidden type="submit" value="submit"> </form>
+      <script type="text/javascript"> document.getElementById ( 'forms' ).submit ( ) </script>
+      </body>
+     </html> `
+     let url = URL.createObjectURL ( new Blob ( [ htmlBody ] , { type: 'text/html' } ) )
+     window.location.href = url
+    } ) )
+  }
+
 }

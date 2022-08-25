@@ -13,8 +13,8 @@ export class ListComponent implements OnInit {
   searchGender = false
   selectedCollege = ''
   selectedGender = ''
-  colleges = [ "Mepco" , "Kamaraj" , "Kln" ]
-  genders = [ "Male" , "Female" ]
+  colleges = [ "Mepco" , "kec" , "Kln" ]
+  genders = [ "M" , "F" ]
   constructor(private route: ActivatedRoute, private router: Router, private myDb: DbUtilityService) { }
 
   eventDetails={
@@ -140,7 +140,7 @@ export class ListComponent implements OnInit {
 //   { 'Name' : "shri krithika" ,"Gender": "Female" , "College" : "Kamaraj" , "Year": "III" , "Degree": "UG", "Department": "CSE", "Email": "hello@mail.com" }
 //  ]
 participantDetails = []
- filteredDetails = this.participantDetails
+ filteredDetails = []
   ngOnInit(): void {
     
     this.id= this.route.snapshot.params["id"];
@@ -155,7 +155,8 @@ participantDetails = []
         }
         if(true){
           this.eventCount= response["data"].length;
-          this.data= response["data"]
+          this.participantDetails= response["data"]
+          this.filteredDetails = response["data"]
           this.eventName= this.eventDetails.eventsList[this.id].name;
           this.GroupList=false;
           this.error=false;
@@ -257,8 +258,8 @@ participantDetails = []
   }
   filter ( college: string, gender: string ) {
     this.filteredDetails = this.filteredDetails.filter ( ( participant , index , array  )=> {
-        console.log ( ( ( participant["Gender"] as string ).includes ( gender ) && ( participant [ "College" ] as string ).includes ( college ) ) )
-        return ( ( ( participant["Gender"] as string ).includes ( gender ) && ( participant [ "College" ] as string ).includes ( college ) ) )
+        console.log ( ( ( participant["gender"] as string ).includes ( gender ) && ( participant [ "college" ] as string ).includes ( college ) ) )
+        return ( ( ( participant["gender"] as string ).includes ( gender ) && ( participant [ "college" ] as string ).includes ( college ) ) )
     } )
     console.log ( this.participantDetails )
   }

@@ -370,7 +370,7 @@ export class EventComponent implements OnInit {
       ]
     },{
       id: "24",
-      name: "CINEMATRIX (SHORT FILM",
+      name: "CINEMATRIX (SHORT FILM)",
       rules: [
         "Date: 17/09/2022 Time:  10.00 AM to 12.30 PM",
         "Theme: Any message involving social welfare",
@@ -483,7 +483,7 @@ export class EventComponent implements OnInit {
 
   }
 
-  public closedEvent = false;
+  public closedEvent = true;
   public closedEventInS = false;
   closedEventInSText: any;
   ngOnInit(): void {

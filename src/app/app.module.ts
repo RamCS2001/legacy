@@ -22,6 +22,7 @@ import { ParticipatesComponent } from './participates/participates.component';
 import { AdminComponent } from './admin/admin.component';
 import { ListComponent } from './list/list.component';
 import { ExcelService } from './excel.service';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 
 
 
@@ -41,7 +42,8 @@ import { ExcelService } from './excel.service';
     ParticipateComponent,
     ParticipatesComponent,
     AdminComponent,
-    ListComponent
+    ListComponent,
+    PaymentSuccessComponent
   ],
   imports: [
     BrowserModule,

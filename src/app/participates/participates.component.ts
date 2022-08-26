@@ -23,7 +23,7 @@ export class ParticipatesComponent implements OnInit {
       serverName: "martialarts",
       maxParticipantsPerCollege: 1
     },{
-      id: "1",
+      id: "2",
       name: "BEST MANAGER",
       serverName: "bestmanager",
       maxParticipantsPerCollege: 5

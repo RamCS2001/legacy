@@ -11,10 +11,15 @@ export class ListComponent implements OnInit {
   @ViewChild("participantsTable") table: ElementRef | undefined;
   searchCollege = false
   searchGender = false
+  searchPayment= false
+  searchAccommodation = false
   selectedCollege = ''
   selectedGender = ''
   colleges : any = []
   genders = [ "M" , "F" ]
+  payment = [ "true", "false" ]
+  accpayment = [ "true", "false" ]
+
   constructor(private route: ActivatedRoute, private router: Router, private myDb: DbUtilityService) { }
 
   eventDetails={
@@ -29,7 +34,7 @@ export class ListComponent implements OnInit {
       serverName: "martialarts",
       maxParticipantsPerCollege: 1
     },{
-      id: "1",
+      id: "2",
       name: "BEST MANAGER",
       serverName: "bestmanager",
       maxParticipantsPerCollege: 5
@@ -239,7 +244,7 @@ export class ListComponent implements OnInit {
   public individualList= false;
   public error= false;
 
-  headers:string[]= ["Name", "Gender", "College", "Email", "Year", "Degree", "Department"];
+  headers:string[]= ["Name", "Gender", "College", "Email", "Year", "Degree", "Department", "Paid", "Accomadation"];
   teamNames :any= []; 
 //   participantDetails = [ { 'Name' : "saravana kumar" , "Gender": "Male" , "College" : "Mepco" , "Year": "III" , "Degree": "UG", "Department": "CSE" , "Email": "hello@mail.com" },
 //   { 'Name' : "Krithika shri" , "Gender": "Female" , "College" : "Mepco" , "Year": "III" , "Degree": "UG", "Department": "CSE", "Email": "hello@mail.com" },
@@ -319,6 +324,7 @@ participantDetails = []
     }
     else if(this.id==31){
       this.myDb.getAllList(this.id).subscribe((response: any)=>{
+        console.log(response)
         if(response["message"]==-1){
           localStorage.removeItem("id_token");
           localStorage.removeItem("username");
@@ -373,24 +379,53 @@ participantDetails = []
   enableSearchByCollege ( ) : void {
     this.searchCollege = true;
   }
+  enableSearchByPayment(){
+    this.searchPayment= true;
+  }
+  enableSearchByAccommodation(){
+    this.searchAccommodation= true;
+  }
   disableFilter (  ) {
+    this.genderFilter=""
+    this.collegeFilter=""
+    this.paymentFilter=""
+    this.accPaymentFilter=""
      this.searchGender = false
      this.searchCollege = false
+     this.searchPayment= false
+     this.searchAccommodation= false
      this.filteredDetails = this.participantDetails
   }
+  genderFilter: any = "";
+  collegeFilter: any = "";
+  paymentFilter: any = "";
+  accPaymentFilter: any= "";
   clickedGender ( gender: string ) {
-    this.filter ( "" , gender )
+    this.genderFilter= gender
+    this.filter ( this.collegeFilter , this.genderFilter , this.paymentFilter, this.accPaymentFilter)
     console.log ( gender )
   }
   clickedCollege ( college: string ) {
-    this.filter ( college , "" )
+    this.collegeFilter= college
+    this.filter ( this.collegeFilter , this.genderFilter , this.paymentFilter, this.accPaymentFilter)
     console.log ( college )
   }
-  filter ( college: string, gender: string ) {
+  clickedPayment( pay: string){
+    this.paymentFilter= pay
+    // const payString = ""+ pay
+    this.filter ( this.collegeFilter , this.genderFilter , this.paymentFilter, this.accPaymentFilter)
+    console.log ( pay )
+  }
+  clickedAccPayment( accPay: string){
+    this.accPaymentFilter= accPay
+    this.filter ( this.collegeFilter , this.genderFilter , this.paymentFilter , this.accPaymentFilter)
+    console.log ( accPay )
+  }
+  filter ( college: string, gender: string, pay: string , accPay: string) {
     this.filteredDetails= this.participantDetails
     this.filteredDetails = this.filteredDetails.filter ( ( participant , index , array  )=> {
-        console.log ( ( ( participant["gender"] as string ).includes ( gender ) && ( participant [ "college" ] as string ).includes ( college ) ) )
-        return ( ( ( participant["gender"] as string ).includes ( gender ) && ( participant [ "college" ] as string ).includes ( college ) ) )
+        console.log ( ( ( participant["gender"] as string ).includes ( gender ) && ( participant [ "college" ] as string ).includes ( college ) && (String(participant [ "regFeesPayment" ])).includes ( pay ) && (String(participant [ "accommodationFeesPayment" ])).includes ( accPay ) ) )
+        return ( ( ( participant["gender"] as string ).includes ( gender ) && ( participant [ "college" ] as string ).includes ( college ) && (String(participant [ "regFeesPayment" ])).includes ( pay ) && (String(participant [ "accommodationFeesPayment" ])).includes ( accPay ) ) )
     } )
     console.log ( this.participantDetails )
   }

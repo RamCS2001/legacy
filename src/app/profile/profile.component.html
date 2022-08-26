@@ -45,13 +45,16 @@
                         <td>
                           <div class="row">
                             <div class="col-4">
-                              <input readonly class="form-control" value="{{yesChecked?'300':'200'}}" />
+                              <input readonly class="form-control" value="{{yesChecked? (numDays? '550':'425') :'300'}}" />
                               <div class="alert alert-light" role="alert">
-                                registration fee: 200  <span *ngIf="yesChecked"> + accomodation fee: 100</span>
+                                registration fee: 300  <span *ngIf="yesChecked"> + Day One accomodation fee: 125</span><span *ngIf="numDays"> + Day Two accomodation fee: 125</span>
                               </div>
                             </div>
                             <div class="col-4">
                               <button (click)="pay()" class="btn btn-primary" [disabled]="regPaid">pay</button>
+                              <br><span style="color: red">
+                                {{paidText}}
+                              </span>
                             </div>
                           </div>
                         </td>
@@ -59,12 +62,30 @@
                       <tr>
                         <td>Do you Need Accomadation:</td>
                           <td>
-                            <form [formGroup]="accomadationForm" (ngSubmit)="submitAccomadationReq()">
-                              <input type="radio" style="margin-right: 5px;" name="accomadation" value="yes" id="yesRadio" (click)="accomodationSelected()"/>Yes
-                              <input checked (click)="accomodationNotSelected()" type="radio" style="margin-right: 5px; margin-left: 5px;" name="accomadation" value="no" id="noRadio"/>No
-                              <button class="btn btn-primary" [disabled]="SubmittedAccomadationReqButton" style="margin-left: 5px; height: 40px;">Submit</button>
-                            </form>  
-                          </td>
+                            <form [formGroup]="accomadationForm">
+                              <input type="radio" style="margin-right: 5px;" name="accomadation" value="yes" [checked]="yesRadioChecked" id="yesRadio" [disabled]="yesDisable" (click)="accomodationSelected()"/>Yes
+                              <input (click)="accomodationNotSelected()" type="radio" [checked]="noRadioChecked" style="margin-right: 5px; margin-left: 5px;" [disabled]="noDisable" name="accomadation" value="no" id="noRadio"/>No
+                              <button class="btn btn-primary" (click)="clearOption()">Clear</button>                            
+                            </form>
+                              
+                             <span style="color: red">
+                              {{accMessage}}
+                            </span>
+                            </td>
+                      </tr>
+                      <tr *ngIf="yesChecked">
+                        <td>Number of Days Accomadation Needed :</td>
+                          <td>
+                            <form [formGroup]="accomadationForm">
+                              <input type="radio" style="margin-right: 5px;" name="accomadation" value="1" [checked]="yesRadioChecked" id="yesRadio" [disabled]="yesDisable" (click)="numOneAccomodationSelected()"/>1
+                              <input (click)="numTwoAccomodationSelected()" type="radio" [checked]="noRadioChecked" style="margin-right: 5px; margin-left: 5px;" [disabled]="noDisable" name="accomadation" value="no" id="noRadio"/>2
+                              <button class="btn btn-primary" (click)="numClearOption()">Clear</button>                            
+                            </form>
+                              
+                             <span style="color: red">
+                              {{accMessage}}
+                            </span>
+                            </td>
                       </tr>
                       <!-- <tr>
                         <td>Pay Accomadation Fee:</td>

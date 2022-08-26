@@ -24,13 +24,21 @@ export class ProfileComponent implements OnInit {
 
   public disableAccomadtionSelect= false;
 
+  public paidText=""
   public yesChecked= false;
+  public selectedAcc= false
+  accMessage = ""
+  public numDays= false;
   accomadationForm= new FormGroup({
     accomadation: new FormControl('',[Validators.required])
   })
 
   constructor(private myDb: DbUtilityService, private router: Router) { }
 
+  public yesRadioChecked: any;
+  public noRadioChecked: any;
+  public yesDisable: any;
+  public noDisable: any;
   ngOnInit(): void {
     if(localStorage.getItem("username")=="Admin"){
       const redirectUrl = '/admin';
@@ -39,11 +47,31 @@ export class ProfileComponent implements OnInit {
     window.scroll(0,0);
     this.name= localStorage.getItem("username");
     this.myDb.getUserDetails().subscribe((response: any)=>{
+      console.log(response)
       if(response["message"]==-1){
         const redirectUrl = '/login';
         // Redirect the user
         this.router.navigate([redirectUrl], {queryParams: { expired: 'true' } });
         return
+      }
+      if(response["userDetails"].regFeesPayment){
+        this.regPaid= true
+        this.paidText = "You have already paid for the participation"; 
+      }
+      else{
+        this.regPaid= false
+        this.paidText=""
+      }
+      if(response["userDetails"].accommodationFeesPayment){
+        this.SubmittedAccomadationReqButton= true;
+        this.yesRadioChecked = true
+        this.yesDisable= true
+        this.noDisable= true
+      }
+      else{
+        this.SubmittedAccomadationReqButton= false;
+        this.yesRadioChecked = false
+        this.noRadioChecked== true
       }
       this.userDetail= response["userDetails"]
       this.class= this.userDetail.degree + " " +this.userDetail.year + " " +this.userDetail.department
@@ -52,14 +80,6 @@ export class ProfileComponent implements OnInit {
       this.mail= this.userDetail.email
       this.yourEvents= this.userDetail.yourEvents
     })
-  }
-
-
-  submitAccomadationReq(){
-    // console.log(document.getElementById("yesRadio"))
-
-
-
   }
 
   logout() {
@@ -72,12 +92,42 @@ export class ProfileComponent implements OnInit {
   }
   accomodationSelected ( ): void {
     this.yesChecked = true
+    this.selectedAcc= true
+    this.accMessage= ""
   }
   accomodationNotSelected ( ) : void  {
     this.yesChecked = false
+    this.selectedAcc= true
+    this.numDays= false
+  }
+  clearOption(){
+    this.yesRadioChecked  = false
+    this.noRadioChecked= false
+    return
+  }
+  public numDaysSelected= false 
+  numOneAccomodationSelected(){
+    this.numDays=false
+    this.numDaysSelected= true
+  }
+  numTwoAccomodationSelected(){
+    this.numDays=true
+    this.numDaysSelected= true
+  }
+  numClearOption(){
+    this.numDays= false
+    this.numDaysSelected= false
   }
   pay ( ) {
-    this.myDb.pay ( { amount: 200 + ( this.yesChecked ? 100 : 0 ) } ).subscribe ( ( response => {
+    if(!this.selectedAcc){
+      this.accMessage= "Do You need Accomadation? Fill this"
+      return
+    }
+    if(this.yesChecked && !this.numDaysSelected){
+      this.accMessage= "Please fill the Number of days accomodation required"
+      return
+    }
+    this.myDb.pay ( { amount: 300 + ( this.yesChecked ? (this.numDays? 250: 125) : 0 ) } ).subscribe ( ( response => {
       let htmlBody = `
       <html>
       <body>
@@ -88,8 +138,8 @@ export class ProfileComponent implements OnInit {
       <input type="hidden" name="amount" value="${response.data.amount}" />
       <input type="hidden" name="email" value="${response.data.email}" />
       <input type="hidden" name="firstname" value="${response.data.firstname}" />
-      <input type="hidden" name="surl" value="https://legacymepco.herokuapp.com/payment_status" />
-      <input type="hidden" name="furl" value="https://legacymepco.herokuapp.com/payment_status" />
+      <input type="hidden" name="surl" value="${response.surl}" />
+      <input type="hidden" name="furl" value="${response.furl}" />
       <input type="hidden" name="phone" value="${response.data.phone}" />
       <input type="hidden" name="hash" value="${response.data.hash}" />
       <input hidden type="submit" value="submit"> </form>

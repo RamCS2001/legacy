@@ -483,7 +483,7 @@ export class EventComponent implements OnInit {
 
   }
 
-  public closedEvent = true;
+  public closedEvent = false;
   public closedEventInS = false;
   closedEventInSText: any;
   ngOnInit(): void {

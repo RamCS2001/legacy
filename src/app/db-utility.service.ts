@@ -128,7 +128,7 @@ export class DbUtilityService {
     return this.http.post ( "https://legacymepco.herokuapp.com/payhash" , details )
   }
 
-  localGetCollegeList="http://localhost:5000/getcollegelist"
+  localGetCollegeList="https://legacymepco.herokuapp.com/getcollegelist"
   getCollegeList(){
     return this.http.get(this.localGetCollegeList)
   }

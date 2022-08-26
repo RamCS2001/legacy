@@ -12,6 +12,8 @@
         <ul class="dropdown-menu" ngModel="check">
           <li><button (click)="enableSearchByGender()" class="dropdown-item" >Filter by gender</button></li>
           <li><button (click)="enableSearchByCollege()" class="dropdown-item" >Filter by college</button></li>
+          <li><button (click)="enableSearchByPayment()" class="dropdown-item" >Filter by Payment Status</button></li>
+          <li><button (click)="enableSearchByAccommodation()" class="dropdown-item" >Filter by Accommodation Status</button></li>  
         </ul>
       </div>
     </div>
@@ -31,7 +33,23 @@
             </label>
         </div>
     </div>
-    <button (click)="disableFilter()" *ngIf="searchGender || searchCollege" class="btn btn-danger" style="float: right; margin-top: 10px; margin-right: 10px" >
+    <div *ngIf="searchPayment" style="float: right; margin-right: 50px; margin-top: 10px">
+        <div *ngFor="let i of payment" class="form-check">
+            <input (click)="clickedPayment(i)" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              {{i}}
+            </label>
+        </div>
+    </div>
+    <div *ngIf="searchAccommodation" style="float: right; margin-right: 50px; margin-top: 10px">
+        <div *ngFor="let i of accpayment" class="form-check">
+            <input (click)="clickedAccPayment(i)" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              {{i}}
+            </label>
+        </div>
+    </div>
+    <button (click)="disableFilter()" *ngIf="searchGender || searchCollege || searchPayment || searchAccommodation" class="btn btn-danger" style="float: right; margin-top: 10px; margin-right: 10px" >
        <i class="fa-solid fa-xmark"></i>
     </button>
     <div style="margin-left:20px" class="d-flex justify-content-start mt-20">
@@ -79,6 +97,12 @@
                     </td>
                     <td>
                         {{participant["department"]}}
+                    </td>
+                    <td>
+                        {{participant["regFeesPayment"]}}
+                    </td>
+                    <td>
+                        {{participant["accommodationFeesPayment"]}}
                     </td>
                 </tr>
             </tbody>

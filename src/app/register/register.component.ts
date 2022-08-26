@@ -56,6 +56,11 @@ export class RegisterComponent implements OnInit {
         this.alerts=true;
         return;
       }
+      else if(this.addUser.value.phone_number?.length!=10){
+        this.error="Enter a Valid Phone Number";
+        this.alerts=true;
+        return;
+      }
     }
 
     this.clicked=true;

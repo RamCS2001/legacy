@@ -41,18 +41,18 @@
                         <td>{{yourEvents}}</td>
                       </tr>
                       <tr>
-                        <td>Pay Registeration Fee: </td>
-                        <td>
+                        <td >Pay Registeration Fee: </td>
+                        <td >
                           <div class="row">
                             <div class="col-4">
-                              <input readonly class="form-control" value="{{yesChecked? (numDays? '550':'425') :'300'}}" />
+                              <input readonly class="form-control" [value]="total_fee" />
                               <div class="alert alert-light" role="alert">
                                 registration fee: 300  <span *ngIf="yesChecked"> + Day One accomodation fee: 125</span><span *ngIf="numDays"> + Day Two accomodation fee: 125</span>
                               </div>
                             </div>
                             <div class="col-4">
-                              <button (click)="pay()" class="btn btn-primary" [disabled]="regPaid">pay</button>
-                              <br><span style="color: red">
+                              <button (click)="pay()" class="btn btn-primary" [disabled]="regPaid && (total_fee == 0)">pay</button>
+                              <br><span style="color: red; margin-top: 10px">
                                 {{paidText}}
                               </span>
                             </div>
@@ -65,9 +65,8 @@
                             <form [formGroup]="accomadationForm">
                               <input type="radio" style="margin-right: 5px;" name="accomadation" value="yes" [checked]="yesRadioChecked" id="yesRadio" [disabled]="yesDisable" (click)="accomodationSelected()"/>Yes
                               <input (click)="accomodationNotSelected()" type="radio" [checked]="noRadioChecked" style="margin-right: 5px; margin-left: 5px;" [disabled]="noDisable" name="accomadation" value="no" id="noRadio"/>No
-                              <button class="btn btn-primary" (click)="clearOption()">Clear</button>                            
+                              <button style="margin-left:10px" class="btn btn-primary" (click)="clearOption()">Clear</button>                            
                             </form>
-                              
                              <span style="color: red">
                               {{accMessage}}
                             </span>
@@ -79,7 +78,7 @@
                             <form [formGroup]="accomadationForm">
                               <input type="radio" style="margin-right: 5px;" name="accomadation" value="1" [checked]="yesRadioChecked" id="yesRadio" [disabled]="yesDisable" (click)="numOneAccomodationSelected()"/>1
                               <input (click)="numTwoAccomodationSelected()" type="radio" [checked]="noRadioChecked" style="margin-right: 5px; margin-left: 5px;" [disabled]="noDisable" name="accomadation" value="no" id="noRadio"/>2
-                              <button class="btn btn-primary" (click)="numClearOption()">Clear</button>                            
+                              <button style="margin-left:10px" class="btn btn-primary" (click)="numClearOption()">Clear</button>                            
                             </form>
                               
                              <span style="color: red">

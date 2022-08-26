@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   phoneNo: any;
   mail: any;
   clg: any;
+  total_fee = 300
 
   yourEvents: any;
   public regPaid= false;
@@ -55,7 +56,8 @@ export class ProfileComponent implements OnInit {
         this.router.navigate([redirectUrl], {queryParams: { expired: 'true' } });
         return
       }
-      if(response["userDetails"].regFeesPayment){
+      if(response["userDetails"].paid){
+        this.total_fee = 0
         this.regPaid= true
         this.paidText = "You have already paid for the participation"; 
       }
@@ -110,10 +112,12 @@ export class ProfileComponent implements OnInit {
   numOneAccomodationSelected(){
     this.numDays=false
     this.numDaysSelected= true
+    this.total_fee = this.regPaid ? 125 : 425
   }
   numTwoAccomodationSelected(){
     this.numDays=true
     this.numDaysSelected= true
+    this.total_fee = this.regPaid ? 250 : 550
   }
   numClearOption(){
     this.numDays= false

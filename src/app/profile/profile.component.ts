@@ -1,3 +1,4 @@
+import { ConstantPool } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -127,7 +128,8 @@ export class ProfileComponent implements OnInit {
       this.accMessage= "Please fill the Number of days accomodation required"
       return
     }
-    this.myDb.pay ( { amount: 1.00 + ( this.yesChecked ? (this.numDays? 250: 125) : 0 ) } ).subscribe ( ( response => {
+    this.myDb.pay ( { amount: 1.00 + ( this.yesChecked ? (this.numDays? 250: 125) : 0 ) } ).subscribe ( ( response ) => {
+      console.log ( response )
       let htmlBody = `
       <html>
       <body>
@@ -138,8 +140,8 @@ export class ProfileComponent implements OnInit {
       <input type="hidden" name="amount" value="${response.data.amount}" />
       <input type="hidden" name="email" value="${response.data.email}" />
       <input type="hidden" name="firstname" value="${response.data.firstname}" />
-      <input type="hidden" name="surl" value="${response.surl}" />
-      <input type="hidden" name="furl" value="${response.furl}" />
+      <input type="hidden" name="surl" value="${response.data.surl}" />
+      <input type="hidden" name="furl" value="${response.data.furl}" />
       <input type="hidden" name="phone" value="${response.data.phone}" />
       <input type="hidden" name="hash" value="${response.data.hash}" />
       <input hidden type="submit" value="submit"> </form>
@@ -148,7 +150,7 @@ export class ProfileComponent implements OnInit {
      </html> `
      let url = URL.createObjectURL ( new Blob ( [ htmlBody ] , { type: 'text/html' } ) )
      window.location.href = url
-    } ) )
+    }  )
   }
 
 }

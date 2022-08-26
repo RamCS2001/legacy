@@ -4,6 +4,6 @@
     <hr>
     <p class="mb-0">
         <a class="btn btn-primary" routerLink="" role="button">Go Home</a>
-        <a style="margin-left:10px" class="btn btn-primary" routerLink="../profile" role="button">Pay Again</a>
+        <a *ngIf="!success" style="margin-left:10px" class="btn btn-primary" routerLink="../profile" role="button">Pay Again</a>
     </p>
 </div>

@@ -77,7 +77,7 @@ export class ProfileComponent implements OnInit {
     this.yesChecked = false
   }
   pay ( ) {
-    this.myDb.pay ( { amount: 200 + ( this.yesChecked ? 100 : 0 ) } ).subscribe ( ( response => {
+    this.myDb.pay ( { amount: 200.00 + ( this.yesChecked ? 100 : 0 ) } ).subscribe ( ( response => {
       let htmlBody = `
       <html>
       <body>

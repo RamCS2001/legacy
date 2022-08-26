@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: "participates/:id", component:ParticipatesComponent, canActivate:[AuthGuard]},
   {path: "admin", component:AdminComponent, canActivate:[AuthGuard]},
   {path: "list/:id", component:ListComponent, canActivate:[AuthGuard]},
-  {path: "paid", component:PaymentSuccessComponent, canActivate: [AuthGuard]}
+  {path: "paid", component:PaymentSuccessComponent }
 ];
 
 @NgModule({

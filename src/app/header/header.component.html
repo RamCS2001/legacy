@@ -42,7 +42,7 @@
                     <a class="page-scroll" href="#">About</a>
                   </li>
                   <li class="nav-item">
-                    <a class="page-scroll" (click)="scroll('footer')" style="cursor:pointer">Contact</a>
+                    <a class="page-scroll" (click)="scroll('contact')" style="cursor:pointer">Contact</a>
                   </li>
                   <li class="nav-item" *ngIf="usernameDisplay">
                     <a class="page-scroll" [routerLink]="['/profile']">{{username}}'s Profile</a>
@@ -85,7 +85,7 @@
         class="header-hero bg_cover"
         style="background-image: url(assets/images/header/banner-bg.svg)"
       >
-        <app-header-content>  </app-header-content>
+      <app-header-content>  </app-header-content>
         <div id="particles-1" class="particles"></div>
       </div>
     <!-- header hero -->

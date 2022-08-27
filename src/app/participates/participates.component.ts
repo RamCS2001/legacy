@@ -322,7 +322,16 @@ export class ParticipatesComponent implements OnInit {
       this.addParticipant()
     }
   }
-
+  checkunique ( ) : boolean {
+    let array:Array<string>;
+    let unique = true;
+    ( this.participantForm.get ( "participants" ) as FormArray ).controls.forEach ( ( element , index ) => {
+      if ( element.get( "email" )?.value in array )
+        unique = false
+      array.push ( element.get( "email" )?.value )
+    } )
+    return unique
+  }
   n: number=0;
   addParticipant(){
     this.n= this.n+1
@@ -401,6 +410,11 @@ export class ParticipatesComponent implements OnInit {
           this.alert=true;
           this.wait= false;
           this.loading= false;
+          return
+        }
+        if ( ! this.checkunique ( ) )
+        {
+          this.error = "duplicate participants!"
           return
         }
         if(res["message"]==1){

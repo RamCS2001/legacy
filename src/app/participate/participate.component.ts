@@ -121,14 +121,18 @@ export class ParticipateComponent implements OnInit {
     this.name= this.data["name"];
 
     this.myDb.getUserDetails().subscribe((response: any)=>{
+      console.log(response)
       this.userDetail= response["userDetails"]
       this.yourEvents= this.userDetail.yourEvents
-
+      console.log(this.name)
       if(this.yourEvents.includes(this.name)){
+        console.log(this.name)
+      
         this.msg= "You have Already Registered for this event"
         this.alert=false;
         this.success=true;
         this.afterForm= false;
+        return
       }
     })
 
@@ -143,6 +147,7 @@ export class ParticipateComponent implements OnInit {
 
     this.myDb.checkCollegeParticipation(this.eventDetails.eventsList[this.id].serverName)
       .subscribe((response: any)=>{
+        console.log(response)
         if(response["message"]==-1){
           const redirectUrl = '/login';
           // Redirect the user

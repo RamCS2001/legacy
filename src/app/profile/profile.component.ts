@@ -102,6 +102,7 @@ export class ProfileComponent implements OnInit {
     this.yesChecked = false
     this.selectedAcc= true
     this.numDays= false
+    this.total_fee = this.regPaid ? 0 : 300
   }
   clearOption(){
     this.yesRadioChecked  = false

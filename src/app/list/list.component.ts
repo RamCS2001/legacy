@@ -245,6 +245,7 @@ export class ListComponent implements OnInit {
   public error= false;
 
   headers:string[]= ["Name", "Gender", "College", "Email", "Year", "Degree", "Department", "Paid", "Accomadation"];
+  feilds: string[]= ["name", "gender", "college", "email", "year", "degree", "department", "regFeesPayment", "accommodationFeesPayment"]
   teamNames :any= []; 
 //   participantDetails = [ { 'Name' : "saravana kumar" , "Gender": "Male" , "College" : "Mepco" , "Year": "III" , "Degree": "UG", "Department": "CSE" , "Email": "hello@mail.com" },
 //   { 'Name' : "Krithika shri" , "Gender": "Female" , "College" : "Mepco" , "Year": "III" , "Degree": "UG", "Department": "CSE", "Email": "hello@mail.com" },
@@ -256,8 +257,6 @@ participantDetails = []
   ngOnInit(): void {
     
     this.myDb.getCollegeList().subscribe((response: any)=>{
-      console.log(response)
-      console.log(response["0"]["college"])
       for(let i=0;i<response.length; i++){
         this.colleges.push(response[i]["college"])
       }
@@ -265,9 +264,8 @@ participantDetails = []
     })
     this.id= this.route.snapshot.params["id"];
 
-    if(this.id>=0 && this.id<9){
+    if(this.id>=0 && this.id<12){
       this.myDb.getIndividualList(this.id).subscribe((response: any)=>{
-        console.log(response)
         if(response["message"]==-1){
           localStorage.removeItem("id_token");
           localStorage.removeItem("username");
@@ -292,8 +290,9 @@ participantDetails = []
         }
       } )
     }
-    else if(9<=this.id && this.id <22){
+    else if(12<=this.id && this.id <30){
       this.myDb.getGroupList(this.id).subscribe((response: any)=>{
+        console.log(response)
         if(response["message"]==-1){
           localStorage.removeItem("id_token");
           localStorage.removeItem("username");
@@ -305,17 +304,20 @@ participantDetails = []
           return
         }
         if(response["message"]==1){
+          this.GroupList=true;
+          this.error=false;
+          this.individualList=false;
           for(let i=0; i<response["data"].length; i++){
             this.teamNames.push(response["data"][i].teamName)
           }
           this.eventCount=response["data"].length;
           for(let i=0; i<response["data"].length; i++){
+
             this.data.push(response["data"][i].members)
+            console.log(this.data)
           }
           this.eventName= this.eventDetails.eventsList[this.id].name;
-          this.GroupList=true;
-          this.error=false;
-          this.individualList=false;
+          
         }
         else{
           this.error=true

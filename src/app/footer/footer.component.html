@@ -15,9 +15,9 @@
             </div>
             <div class="col-lg-6">
                 <div class="subscribe-form mt-50">
-                    <form action="#">
-                        <input type="text" placeholder="Feedback/Queries" />
-                        <button class="main-btn">Report</button>
+                    <form [formGroup]="queryForm">
+                        <input type="text" formControlName="queryBox" placeholder="Feedback/Queries" />
+                        <button class="main-btn" type="submit" (click)="sendQuery()" [disabled]="wait">Report</button>
                     </form>
                 </div>
             </div>

@@ -132,4 +132,9 @@ export class DbUtilityService {
   getCollegeList(){
     return this.http.get(this.localGetCollegeList)
   }
+
+  sendQueryLink= "http://localhost:5000/sendquery"
+  sendQuery(query: any){
+    return this.http.post ( this.sendQueryLink , query)
+  }
 }

@@ -133,7 +133,7 @@ export class ProfileComponent implements OnInit {
       this.accMessage= "Please fill the Number of days accomodation required"
       return
     }
-    this.myDb.pay ( { amount: 1 + ( this.yesChecked ? (this.numDays? 1: 0) : 0 ) } ).subscribe ( ( response ) => {
+    this.myDb.pay ( { amount: 300 + ( this.yesChecked ? (this.numDays? 250 : 125) : 0 ) } ).subscribe ( ( response ) => {
       console.log ( response )
       let htmlBody = `
       <html>

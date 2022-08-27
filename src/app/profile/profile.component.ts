@@ -65,7 +65,7 @@ export class ProfileComponent implements OnInit {
         this.regPaid= false
         this.paidText=""
       }
-      if(!response["userDetails"].accommodationFeesPayment){
+      if(response["userDetails"].accommodationFeesPayment){
         this.SubmittedAccomadationReqButton= true;
         this.yesRadioChecked = true
         this.yesDisable= true

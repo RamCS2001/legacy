@@ -38,4 +38,9 @@ export class HeaderComponent implements OnInit {
     // Redirect the user
     this.router.navigate([redirectUrl], {queryParams: { logout: 'true' }});
   }
+  scroll ( name: string ): void {
+    const elementList = document.querySelectorAll('.' + name);
+    const element = elementList[0] as HTMLElement;
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
 }

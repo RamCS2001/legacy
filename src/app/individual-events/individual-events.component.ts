@@ -8,8 +8,7 @@ import { NavigationExtras, Router } from '@angular/router';
 })
 export class IndividualEventsComponent implements OnInit {
 
-  constructor(private router: Router) { }
-
+  constructor(protected router: Router) { }
   ngOnInit(): void {
   }
   

@@ -33,13 +33,16 @@
                     <a class="page-scroll active" href="#">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="page-scroll" href="/event">Events</a>
+                    <a class="page-scroll" (click)="scroll('individual')" style="cursor:pointer">Solo Events</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="page-scroll" (click)="scroll('group')" style="cursor:pointer">Group Events</a>
                   </li>
                   <li class="nav-item">
                     <a class="page-scroll" href="#">About</a>
                   </li>
                   <li class="nav-item">
-                    <a class="page-scroll" href="#">Contact</a>
+                    <a class="page-scroll" (click)="scroll('footer')" style="cursor:pointer">Contact</a>
                   </li>
                   <li class="nav-item" *ngIf="usernameDisplay">
                     <a class="page-scroll" [routerLink]="['/profile']">{{username}}'s Profile</a>

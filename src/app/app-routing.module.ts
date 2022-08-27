@@ -3,7 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './authentication/auth.guard';
 import { EventComponent } from './event/event.component';
+import { GroupEventsComponent } from './group-events/group-events.component';
 import { HomeComponent } from './home/home.component';
+import { IndividualEventsComponent } from './individual-events/individual-events.component';
 import { ListComponent } from './list/list.component';
 import { LoginComponent } from './login/login.component';
 import { ParticipateComponent } from './participate/participate.component';
@@ -22,7 +24,7 @@ const routes: Routes = [
   {path: "participates/:id", component:ParticipatesComponent, canActivate:[AuthGuard]},
   {path: "admin", component:AdminComponent, canActivate:[AuthGuard]},
   {path: "list/:id", component:ListComponent, canActivate:[AuthGuard]},
-  {path: "paid", component:PaymentSuccessComponent }
+  {path: "paid", component:PaymentSuccessComponent } , 
 ];
 
 @NgModule({

@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class GroupEventsComponent implements OnInit {
   
-    constructor(private route: ActivatedRoute, private router: Router) {}
+    constructor(private route: ActivatedRoute, protected router: Router) {}
 
    
     ngOnInit(): void {

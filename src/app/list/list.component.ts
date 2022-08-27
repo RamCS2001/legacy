@@ -244,7 +244,7 @@ export class ListComponent implements OnInit {
   public individualList= false;
   public error= false;
 
-  headers:string[]= ["Name", "Gender", "College", "Email", "Year", "Degree", "Department", "Paid", "Accomadation"];
+  headers:string[]= ["Name", "Gender", "College", "Email", "Year", "Degree", "Department", "Paid", "Accomadation", "Day one paid","Day two paid" ];
   feilds: string[]= ["name", "gender", "college", "email", "year", "degree", "department", "regFeesPayment", "accommodationFeesPayment"]
   teamNames :any= []; 
 //   participantDetails = [ { 'Name' : "saravana kumar" , "Gender": "Male" , "College" : "Mepco" , "Year": "III" , "Degree": "UG", "Department": "CSE" , "Email": "hello@mail.com" },

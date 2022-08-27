@@ -503,7 +503,7 @@ export class EventComponent implements OnInit {
   }
 
   participate(){
-    if(this.id<9){
+    if(this.id<12){
       const redirectUrl = '/participate/'+this.id;
       // Redirect the user
       this.router.navigate([redirectUrl]);

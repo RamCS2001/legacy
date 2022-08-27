@@ -323,14 +323,17 @@ export class ParticipatesComponent implements OnInit {
     }
   }
   checkunique ( ) : boolean {
-    let array:Array<string>;
-    let unique = true;
+    let unique = true
+    let array:Array<string> = [ "bva,ue" ];
     ( this.participantForm.get ( "participants" ) as FormArray ).controls.forEach ( ( element , index ) => {
-      if ( element.get( "email" )?.value in array )
-        unique = false
       array.push ( element.get( "email" )?.value )
     } )
-    return unique
+    array.sort ( )
+    array.forEach ( ( element , index ) => {
+      if ( array [ ( index + 1 ) % ( array.length ) ] == element )
+        unique = false
+    } )
+    return unique;
   }
   n: number=0;
   addParticipant(){
@@ -358,13 +361,19 @@ export class ParticipatesComponent implements OnInit {
     }
     
   }
-
   public wait= false
   participate(){
     if(!this.participantForm.valid){
       window.scroll(0,0);
       this.alert= true;
       this.error= "Fill in all details";
+      return
+    }
+    if ( ! this.checkunique ( ) )
+    {
+      window.scroll(0,0);
+      this.alert=true;
+      this.error = "duplicate participants!"
       return
     }
     this.alert= false;
@@ -410,11 +419,6 @@ export class ParticipatesComponent implements OnInit {
           this.alert=true;
           this.wait= false;
           this.loading= false;
-          return
-        }
-        if ( ! this.checkunique ( ) )
-        {
-          this.error = "duplicate participants!"
           return
         }
         if(res["message"]==1){

@@ -139,7 +139,7 @@ export class DbUtilityService {
   }
 
 
-  getParticipantNumberCount= "http://localhost:5000/getParticipantNumberCount"
+  getParticipantNumberCount= "http://legacymepco.herokuapp.com/getParticipantNumberCount"
   getParticipantsCount(){
     return this.http.get(this.getParticipantNumberCount)
   }

@@ -290,7 +290,7 @@ participantDetails = []
         }
       } )
     }
-    else if(12<=this.id && this.id <30){
+    else if(12<=this.id && this.id <31){
       this.myDb.getGroupList(this.id).subscribe((response: any)=>{
         console.log(response)
         if(response["message"]==-1){

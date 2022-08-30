@@ -228,6 +228,7 @@ export class AdminComponent implements OnInit {
   notAdmin: any;
   public unauthorizedMsg= false
   public authorizedMsg= false
+  count: any=[];
 
   ngOnInit(): void {
 
@@ -235,12 +236,21 @@ export class AdminComponent implements OnInit {
       this.authorizedMsg=false;
       this.unauthorizedMsg= true
       this.notAdmin= "You Do Not have Authorization for this Page"
+      return
     }
     else{
       this.authorizedMsg=true;
       this.unauthorizedMsg= false
       this.notAdmin=""
     }
+    this.myDb.getParticipantsCount().subscribe((res: any)=>{
+      if(res["message"]==1){
+        this.count=res["count"]
+        console.log(this.count)
+      }
+    })
+
+
   }
 
   logout(){

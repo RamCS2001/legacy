@@ -137,4 +137,10 @@ export class DbUtilityService {
   sendQuery(query: any){
     return this.http.post ( this.sendQueryLink , query)
   }
+
+
+  getParticipantNumberCount= "http://localhost:5000/getParticipantNumberCount"
+  getParticipantsCount(){
+    return this.http.get(this.getParticipantNumberCount)
+  }
 }

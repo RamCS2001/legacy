@@ -12,4 +12,10 @@ export class HeaderContentComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  scroll ( name: string ): void {
+    const elementList = document.querySelectorAll('.' + name);
+    const element = elementList[0] as HTMLElement;
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+
 }

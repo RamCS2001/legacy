@@ -277,9 +277,9 @@ participantDetails = []
           return
         }
         if(response["message"]==1){
-          this.eventCount= response["data"].length;
           this.participantDetails= response["data"]
           this.filteredDetails = response["data"]
+          this.eventCount= this.filteredDetails.length;
           this.eventName= this.eventDetails.eventsList[this.id].name;
           this.GroupList=false;
           this.error=false;
@@ -397,6 +397,8 @@ participantDetails = []
      this.searchPayment= false
      this.searchAccommodation= false
      this.filteredDetails = this.participantDetails
+    this.eventCount= this.filteredDetails.length;
+
   }
   genderFilter: any = "";
   collegeFilter: any = "";
@@ -429,6 +431,6 @@ participantDetails = []
         console.log ( ( ( participant["gender"] as string ).includes ( gender ) && ( participant [ "college" ] as string ).includes ( college ) && (String(participant [ "regFeesPayment" ])).includes ( pay ) && (String(participant [ "accommodationFeesPayment" ])).includes ( accPay ) ) )
         return ( ( ( participant["gender"] as string ).includes ( gender ) && ( participant [ "college" ] as string ).includes ( college ) && (String(participant [ "regFeesPayment" ])).includes ( pay ) && (String(participant [ "accommodationFeesPayment" ])).includes ( accPay ) ) )
     } )
-    console.log ( this.participantDetails )
+    this.eventCount= this.filteredDetails.length;
   }
  }

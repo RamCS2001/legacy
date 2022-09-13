@@ -20,7 +20,8 @@ export class ProfileComponent implements OnInit {
   total_fee = 300
 
   yourEvents: any;
-  public regPaid= false;
+  // public regPaid= false;
+  public regPaid= true;
   public SubmittedAccomadationReqButton= false;
   public accomadationPaid=false;
 
@@ -59,7 +60,9 @@ export class ProfileComponent implements OnInit {
       if(response["userDetails"].paid){
         this.total_fee = 0
         this.regPaid= true
-        this.paidText = "You have already paid for the participation"; 
+        // this.paidText = "You have already paid for the participation"; 
+        this.paidText = "Payment Closed"; 
+
       }
       else{
         this.regPaid= false
